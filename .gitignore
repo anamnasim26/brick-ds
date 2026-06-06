@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Brick DS sub-project
+Brick DS/node_modules
+Brick DS/dist

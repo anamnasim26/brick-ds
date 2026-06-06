@@ -65,8 +65,8 @@
   --color-active-blue-700: #0963b5;
   --color-active-blue-800: #074c8c;
   --color-active-blue-900: #053a6b;
-  --font-heading: Instrument Sans;
-  --font-body: Instrument Sans;
+  --font-heading: "Instrument Sans";
+  --font-body: "Instrument Sans";
   --font-weight-300: regular;
   --font-weight-500: semibold;
   --font-weight-700: bold;

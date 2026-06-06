@@ -67,6 +67,13 @@ const sd = new StyleDictionary({
         transform: token => `${token.$value}px`,
       },
 
+      // Quote font family string values so they work correctly in CSS
+      'string/font-family': {
+        type: 'value',
+        filter: token => token.$type === 'string' && token.path[1] === 'Family',
+        transform: token => `"${token.$value}"`,
+      },
+
       // Map the token path to a Tailwind v4 @theme CSS variable name
       'name/tailwind': {
         type: 'name',
@@ -77,7 +84,7 @@ const sd = new StyleDictionary({
 
   platforms: {
     css: {
-      transforms: ['color/figma-hex', 'number/px', 'name/tailwind'],
+      transforms: ['color/figma-hex', 'number/px', 'string/font-family', 'name/tailwind'],
       buildPath: 'src/',
       files: [
         {

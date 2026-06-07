@@ -81,7 +81,7 @@ function Group({ group }: { group: NavGroup }) {
 
 export function SideNav({ sections, backTo }: { sections: NavSection[]; backTo?: string }) {
   return (
-    <aside className="w-[220px] shrink-0 h-[calc(100vh-56px)] sticky top-[56px] overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex flex-col">
+    <aside className="w-[360px] shrink-0 h-[calc(100vh-56px)] sticky top-[56px] overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex flex-col">
       {backTo && (
         <Link
           to={backTo}

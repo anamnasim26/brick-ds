@@ -58,18 +58,12 @@ export function ComponentTabs({ playground, usage, changelog }: ComponentTabsPro
 
 // ─── Changelog panel ───────────────────────────────────────────────────────────
 
+// Matches Badge component: rounded-4 border px-8 py-4 text-12 font-normal leading-16
 const CHANGE_TYPE_STYLES: Record<string, string> = {
-  Added:   'bg-emerald-50 text-emerald-700 border border-emerald-200',
-  Changed: 'bg-sky-50 text-sky-700 border border-sky-200',
-  Fixed:   'bg-amber-50 text-amber-700 border border-amber-200',
-  Removed: 'bg-rose-50 text-rose-700 border border-rose-200',
-};
-
-const CHANGE_TYPE_DOT: Record<string, string> = {
-  Added:   'bg-emerald-500',
-  Changed: 'bg-sky-500',
-  Fixed:   'bg-amber-500',
-  Removed: 'bg-rose-500',
+  Added:   'bg-success-green-50 border-success-green-500 text-success-green-500',
+  Changed: 'bg-active-blue-50 border-active-blue-700 text-active-blue-700',
+  Fixed:   'bg-warning-yellow-50 border-warning-yellow-700 text-warning-yellow-700',
+  Removed: 'bg-error-red-50 border-error-red-500 text-error-red-500',
 };
 
 function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
@@ -92,8 +86,7 @@ function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
             <div className="flex flex-col gap-16">
               {entry.changes.map(group => (
                 <div key={group.type} className="flex gap-16">
-                  <span className={`shrink-0 mt-[3px] flex items-center gap-5 text-11 font-semibold px-8 py-[4px] rounded-6 tracking-wide ${CHANGE_TYPE_STYLES[group.type] ?? ''}`}>
-                    <span className={`w-[6px] h-[6px] rounded-full shrink-0 ${CHANGE_TYPE_DOT[group.type] ?? ''}`} />
+                  <span className={`shrink-0 mt-[2px] inline-flex items-center px-8 py-4 rounded-4 border text-12 font-normal leading-16 ${CHANGE_TYPE_STYLES[group.type] ?? ''}`}>
                     {group.type}
                   </span>
                   <ul className="flex flex-col gap-6">

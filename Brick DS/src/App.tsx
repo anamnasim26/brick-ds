@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@/lib/theme';
 import { TopNav } from '@/components/layout/TopNav';
 import { Landing } from '@/pages/Landing';
+import { SetupPage } from '@/pages/SetupPage';
 import { FoundationsLayout, FoundationsIndex } from '@/pages/foundations/FoundationsLayout';
 import { ComponentsLayout } from '@/pages/components/ComponentsLayout';
 import { ComponentsIndexPage } from '@/pages/components/ComponentsIndex';
@@ -28,6 +29,7 @@ export default function App() {
         <TopNav />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/setup" element={<SetupPage />} />
           <Route path="/foundations" element={<FoundationsLayout />}>
             <Route index element={<FoundationsIndex />} />
             <Route path="colours" element={<Colours />} />

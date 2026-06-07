@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Layers, Box } from 'lucide-react';
+import { Layers, Box, BookOpen } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
 // ─── Cursor ───────────────────────────────────────────────────────────────────
@@ -113,6 +113,15 @@ const CARDS = [
     iconClass: 'bg-success-green-50 text-success-green-500',
     border: 'hover:border-success-green-300',
   },
+  {
+    to: '/setup',
+    icon: BookOpen,
+    title: 'Get set up',
+    description:
+      'Step-by-step setup guides for developers and designers — from cloning the repo to importing your first component.',
+    iconClass: 'bg-warning-yellow-50 text-warning-yellow-700',
+    border: 'hover:border-warning-yellow-300',
+  },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -206,7 +215,7 @@ export function Landing() {
       {/* ── Get started cards ── */}
       <section className="px-48 py-48 bg-brick-grey-100">
         <h2 className="text-24 font-bold text-brick-grey-950 mb-32">Get started</h2>
-        <div className="grid grid-cols-2 gap-24 max-w-[800px]">
+        <div className="grid grid-cols-3 gap-24 max-w-[1200px]">
           {CARDS.map(({ to, icon: Icon, title, description, iconClass, border }) => (
             <button
               key={to}

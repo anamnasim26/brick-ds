@@ -15,9 +15,9 @@ const SECTIONS: NavSection[] = [
     items: [
       { label: 'Button', to: '/components/button' },
       { label: 'Checkbox', to: '/components/checkbox' },
-      { label: 'Input', to: '/components/input', badge: 'Soon' },
-      { label: 'Radio', to: '/components/radio', badge: 'Soon' },
-      { label: 'Switch', to: '/components/switch', badge: 'Soon' },
+      { label: 'Input', to: '/components/input' },
+      { label: 'Radio', to: '/components/radio' },
+      { label: 'Switch', to: '/components/switch' },
     ],
   },
   {
@@ -29,7 +29,7 @@ const SECTIONS: NavSection[] = [
   {
     title: 'Overlays',
     items: [
-      { label: 'Tooltip', to: '/components/tooltip', badge: 'Soon' },
+      { label: 'Tooltip', to: '/components/tooltip' },
     ],
   },
 ];
@@ -37,7 +37,7 @@ const SECTIONS: NavSection[] = [
 export function ComponentsLayout() {
   return (
     <div className="flex flex-1 min-h-[calc(100vh-56px)]">
-      <SideNav sections={SECTIONS} />
+      <SideNav sections={SECTIONS} backTo="/" />
       <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>

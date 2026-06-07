@@ -18,7 +18,7 @@ export function Spacing() {
               className="bg-brick-blue-400 rounded-4 h-[24px]"
               style={{ width: `${Math.max(px, 2)}px` }}
             />
-            <p className="text-14 text-brick-grey-500">spacing-{px}</p>
+            <p className="text-14 text-brick-grey-700">spacing-{px}</p>
           </div>
         ))}
       </div>

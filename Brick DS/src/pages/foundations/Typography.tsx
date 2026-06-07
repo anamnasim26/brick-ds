@@ -26,8 +26,8 @@ export function Typography() {
           <div key={name} className="flex items-center gap-32 px-24 py-20 bg-brick-grey-white">
             <div className="w-[100px] shrink-0">
               <p className="text-12 font-mono text-brick-grey-600">{name}</p>
-              <p className="text-12 text-brick-grey-500">{px}px / {lh}px</p>
-              <p className="text-12 text-brick-grey-400">{usage}</p>
+              <p className="text-12 text-brick-grey-600">{px}px / {lh}px</p>
+              <p className="text-12 text-brick-grey-600">{usage}</p>
             </div>
             <p
               className="text-brick-grey-950 font-semibold truncate"

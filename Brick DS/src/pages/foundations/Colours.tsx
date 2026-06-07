@@ -113,8 +113,8 @@ export function Colours() {
                     className="h-[64px] rounded-8 mb-8"
                     style={{ backgroundColor: hex }}
                   />
-                  <p className={`text-12 font-semibold text-brick-grey-700`}>{name}</p>
-                  <p className="text-12 text-brick-grey-500 font-mono">{hex}</p>
+                  <p className="text-12 font-semibold text-brick-grey-800">{name}</p>
+                  <p className="text-12 text-brick-grey-700 font-mono">{hex}</p>
                 </div>
               ))}
             </div>

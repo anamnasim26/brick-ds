@@ -2,6 +2,9 @@
 @import "./tokens.css";
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
 
+/* Enable class-based dark mode with Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(222.2 84% 4.9%);
@@ -62,6 +65,71 @@
   --color-border: hsl(217.2 32.6% 17.5%);
   --color-input: hsl(217.2 32.6% 17.5%);
   --color-ring: hsl(212.7 26.8% 83.9%);
+}
+
+/* ─── Brick DS dark-mode token overrides ──────────────────────────────────────
+   All brick-* utilities (bg-brick-grey-white, text-brick-grey-950 etc.) are
+   driven by CSS variables compiled from @theme in tokens.css.  Overriding
+   those variables here means every component automatically adapts — no
+   dark: class additions required in component code.
+   ─────────────────────────────────────────────────────────────────────────── */
+.dark {
+  /* ── Surfaces ────────────────────────────────────────────────────────────── */
+  --color-brick-grey-white: #1c2128;   /* cards, nav, panels   (was #fff)      */
+  --color-brick-grey-100:   #0d1117;   /* page bg              (was #fafafa)    */
+  --color-brick-grey-200:   #161b22;   /* secondary surface    (was #f5f5f5)    */
+  --color-brick-grey-300:   #2d333b;   /* borders/dividers     (was #f0f0f0)    */
+  --color-brick-grey-400:   #444c56;   /* input borders        (was #d9d9d9)    */
+
+  /* ── Text / icons ────────────────────────────────────────────────────────── *
+   * The scale below keeps every text step above 4.5:1 on the dark surface.   *
+   * grey-500 and above are safe for small text; grey-400 is border-only.      */
+  --color-brick-grey-500:   #636e7b;   /* subtle text / disabled  (was #bfbfbf) */
+  --color-brick-grey-600:   #8b96a3;   /* captions / placeholders (was #8c8c8c) */
+  --color-brick-grey-700:   #a8b5c2;   /* secondary text          (was #595959) */
+  --color-brick-grey-800:   #c5d0da;   /* body text               (was #434343) */
+  --color-brick-grey-900:   #dce5ed;   /* strong body             (was #2e2e2e) */
+  --color-brick-grey-950:   #f0f6fc;   /* headings / emphasis     (was #242424) */
+  --color-brick-grey-black: #f0f6fc;   /* pure black → near-white              */
+
+  /* ── Brand blue — lighten so it reads on dark surfaces ───────────────────── */
+  --color-brick-blue-50:  #1a2d3d;     /* tinted bg            (was #eaeef1)    */
+  --color-brick-blue-100: #1f3649;     /* tinted border        (was #d6dee3)    */
+  --color-brick-blue-200: #2a4a60;
+  --color-brick-blue-300: #3d6880;
+  --color-brick-blue-400: #6a9db8;     /* caption accent       (was #5c768a)    */
+  --color-brick-blue-500: #88bbd5;     /* primary accent       (was #425563)    */
+  --color-brick-blue-600: #9fcce2;
+  --color-brick-blue-700: #b8dced;
+
+  /* ── Active blue — adapt interactive UI chips to dark bg ─────────────────── */
+  --color-active-blue-50:  #0d2a4a;    /* chip bg              (was #e7f3ff)    */
+  --color-active-blue-100: #0e3460;
+  --color-active-blue-700: #5db1ff;    /* chip border + text   (was #0963b5)    */
+}
+
+/* ─── Cursor float animations (Landing hero) ──────────────────────────────── */
+@keyframes cursor-float-1 {
+  0%, 100% { transform: translate(0px,  0px); }
+  30%       { transform: translate(14px, -18px); }
+  65%       { transform: translate(-8px, -10px); }
+}
+@keyframes cursor-float-2 {
+  0%, 100% { transform: translate(0px,   0px); }
+  25%       { transform: translate(-12px, 14px); }
+  55%       { transform: translate(8px,  -12px); }
+  80%       { transform: translate(-16px,  6px); }
+}
+@keyframes cursor-float-3 {
+  0%, 100% { transform: translate(0px,  0px); }
+  40%       { transform: translate(16px, -12px); }
+  70%       { transform: translate(6px,   10px); }
+}
+@keyframes cursor-float-4 {
+  0%, 100% { transform: translate(0px,   0px); }
+  35%       { transform: translate(-14px, -16px); }
+  65%       { transform: translate(10px,  -6px); }
+  85%       { transform: translate(-8px,  12px); }
 }
 
 @layer base {

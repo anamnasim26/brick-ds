@@ -16,7 +16,7 @@ const SECTIONS = [
 export function FoundationsLayout() {
   return (
     <div className="flex flex-1 min-h-[calc(100vh-56px)]">
-      <SideNav sections={SECTIONS} />
+      <SideNav sections={SECTIONS} backTo="/" />
       <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>

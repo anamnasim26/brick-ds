@@ -116,7 +116,7 @@ const CARDS = [
   {
     to: '/setup',
     icon: BookOpen,
-    title: 'Get set up',
+    title: 'How to use',
     description:
       'Step-by-step setup guides for developers and designers — from cloning the repo to importing your first component.',
     iconClass: 'bg-warning-yellow-50 text-warning-yellow-700',
@@ -233,7 +233,7 @@ export function Landing() {
                 <h3 className="text-20 font-bold text-brick-grey-950 group-hover:text-brick-blue-500 transition-colors">
                   {title}
                 </h3>
-                <p className="text-14 text-brick-grey-600 leading-22">{description}</p>
+                <p className="text-16 text-brick-grey-600 leading-24">{description}</p>
               </div>
             </button>
           ))}

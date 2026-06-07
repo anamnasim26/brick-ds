@@ -70,7 +70,7 @@ function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
   if (!entries || entries.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <p className="text-14 text-brick-grey-500">No changelog entries yet.</p>
+        <p className="text-16 text-brick-grey-500">No changelog entries yet.</p>
       </div>
     );
   }
@@ -81,7 +81,7 @@ function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
           <section key={entry.version}>
             <div className="flex items-baseline gap-16 mb-16">
               <h2 className="text-24 font-bold text-brick-grey-950">{entry.version}</h2>
-              <span className="text-14 text-brick-grey-500">{entry.date}</span>
+              <span className="text-16 text-brick-grey-500">{entry.date}</span>
             </div>
             <div className="flex flex-col gap-16">
               {entry.changes.map(group => (
@@ -91,7 +91,7 @@ function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
                   </span>
                   <ul className="flex flex-col gap-6">
                     {group.items.map((item, i) => (
-                      <li key={i} className="flex gap-10 text-15 text-brick-grey-700 leading-24">
+                      <li key={i} className="flex gap-10 text-16 text-brick-grey-700 leading-24">
                         <span className="mt-[9px] w-[5px] h-[5px] rounded-full bg-brick-grey-400 shrink-0" />
                         <span>{item}</span>
                       </li>

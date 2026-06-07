@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Background -->
+  <rect width="32" height="32" rx="7" fill="#1a2830"/>
+
+  <!-- Row 1: two bricks aligned flush -->
+  <rect x="3"  y="5"  width="12" height="6" fill="#4e6a7a"/>
+  <rect x="17" y="5"  width="12" height="6" fill="#4e6a7a"/>
+
+  <!-- Row 2: offset — accent brick left, two normal right -->
+  <rect x="3"  y="13" width="7"  height="6" fill="#0d8bff"/>
+  <rect x="12" y="13" width="8"  height="6" fill="#4e6a7a"/>
+  <rect x="22" y="13" width="7"  height="6" fill="#4e6a7a"/>
+
+  <!-- Row 3: mirrors row 1 -->
+  <rect x="3"  y="21" width="12" height="6" fill="#4e6a7a"/>
+  <rect x="17" y="21" width="12" height="6" fill="#4e6a7a"/>
+
+  <!-- Subtle top-edge highlight on each brick (1px) for depth -->
+  <rect x="3"  y="5"  width="12" height="1" fill="#6a8fa3" opacity="0.6"/>
+  <rect x="17" y="5"  width="12" height="1" fill="#6a8fa3" opacity="0.6"/>
+  <rect x="3"  y="13" width="7"  height="1" fill="#4db3ff" opacity="0.5"/>
+  <rect x="12" y="13" width="8"  height="1" fill="#6a8fa3" opacity="0.6"/>
+  <rect x="22" y="13" width="7"  height="1" fill="#6a8fa3" opacity="0.6"/>
+  <rect x="3"  y="21" width="12" height="1" fill="#6a8fa3" opacity="0.6"/>
+  <rect x="17" y="21" width="12" height="1" fill="#6a8fa3" opacity="0.6"/>
+</svg>

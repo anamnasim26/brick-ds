@@ -51,7 +51,7 @@ export function Footer() {
 
         {/* ── Copyright ── */}
         <p className="text-12 text-brick-grey-500">
-          © {new Date().getFullYear()} Brick DS
+          © {new Date().getFullYear()} Brick Design System
         </p>
 
       </div>

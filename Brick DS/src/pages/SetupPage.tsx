@@ -10,18 +10,17 @@ import {
 
 type Audience = 'developers' | 'designers';
 
-interface Heading { id: string; text: string; level: 2 | 3 }
 
 // ─── Prose primitives ─────────────────────────────────────────────────────────
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
-  return <h2 id={id} className="text-[20px] font-bold text-brick-grey-950 mt-32 mb-8 scroll-mt-24 first:mt-0">{children}</h2>;
+  return <h2 id={id} className="text-24 font-bold text-brick-grey-950 mt-32 mb-8 scroll-mt-24 first:mt-0">{children}</h2>;
 }
 function H3({ id, children }: { id: string; children: React.ReactNode }) {
-  return <h3 id={id} className="text-[14px] font-semibold text-brick-grey-900 mt-18 mb-4 scroll-mt-24">{children}</h3>;
+  return <h3 id={id} className="text-16 font-semibold text-brick-grey-900 mt-18 mb-4 scroll-mt-24">{children}</h3>;
 }
 function P({ children }: { children: React.ReactNode }) {
-  return <p className="text-[14px] text-brick-grey-800 leading-[1.65] mb-10">{children}</p>;
+  return <p className="text-16 text-brick-grey-800 leading-[1.65] mb-12">{children}</p>;
 }
 function A({ href, children }: { href: string; children: React.ReactNode }) {
   return <a href={href} target="_blank" rel="noreferrer" className="text-active-blue-600 underline underline-offset-2 hover:text-active-blue-700">{children}</a>;
@@ -37,7 +36,7 @@ function OL({ children }: { children: React.ReactNode }) {
 }
 function LI({ children }: { children: React.ReactNode }) {
   return (
-    <li className="flex gap-[10px] text-[14px] text-brick-grey-800 leading-[1.65]">
+    <li className="flex gap-[10px] text-16 text-brick-grey-800 leading-[1.65]">
       <span className="mt-[9px] w-[4px] h-[4px] rounded-full bg-brick-grey-500 shrink-0" />
       <span>{children}</span>
     </li>
@@ -45,7 +44,7 @@ function LI({ children }: { children: React.ReactNode }) {
 }
 function NLI({ n, children }: { n: number; children: React.ReactNode }) {
   return (
-    <li className="flex gap-[12px] text-[14px] text-brick-grey-800 leading-[1.65]">
+    <li className="flex gap-[12px] text-16 text-brick-grey-800 leading-[1.65]">
       <span className="w-[20px] h-[20px] rounded-full bg-brick-grey-900 text-brick-grey-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-[2px]">{n}</span>
       <span>{children}</span>
     </li>
@@ -56,7 +55,7 @@ function Strong({ children }: { children: React.ReactNode }) {
 }
 function Note({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-12 flex gap-[8px] bg-active-blue-50 border border-active-blue-200 rounded-6 px-12 py-8 text-[13px] text-active-blue-800 leading-[1.6]">
+    <div className="mb-12 flex gap-[8px] bg-active-blue-50 border border-active-blue-200 rounded-6 px-12 py-8 text-16 text-active-blue-800 leading-[1.6]">
       <span className="font-semibold shrink-0 text-active-blue-700">Note —</span>
       <span>{children}</span>
     </div>
@@ -97,7 +96,7 @@ function Table({ rows }: { rows: [string, string][] }) {
       {rows.map(([cmd, desc], i) => (
         <div key={cmd} className={`flex ${i < rows.length - 1 ? 'border-b border-brick-grey-300' : ''}`}>
           <div className="w-[190px] shrink-0 bg-brick-grey-200 border-r border-brick-grey-400 px-12 py-8 font-mono text-[12px] text-brick-grey-900">{cmd}</div>
-          <div className="px-12 py-8 text-[13px] text-brick-grey-700 leading-[1.5] flex items-center">{desc}</div>
+          <div className="px-12 py-8 text-16 text-brick-grey-700 leading-[1.5] flex items-center">{desc}</div>
         </div>
       ))}
     </div>
@@ -109,10 +108,8 @@ function Table({ rows }: { rows: [string, string][] }) {
 interface NavSection { title: string; items: { id: string; label: string }[] }
 
 function LeftNav({
-  audience, setAudience, sections, activeId, onNav,
+  sections, activeId, onNav,
 }: {
-  audience: Audience;
-  setAudience: (a: Audience) => void;
   sections: NavSection[];
   activeId: string;
   onNav: (id: string) => void;
@@ -121,28 +118,20 @@ function LeftNav({
     Object.fromEntries(sections.map(s => [s.title, true]))
   );
 
+  // Re-open all groups when sections change (audience switch)
+  useEffect(() => {
+    setOpenGroups(Object.fromEntries(sections.map(s => [s.title, true])));
+  }, [sections]);
+
   return (
-    <aside className="w-[360px] shrink-0 h-[calc(100vh-56px)] sticky top-[56px] overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex flex-col">
-      <Link to="/" className="flex items-center gap-8 px-16 py-8 mb-8 text-[13px] text-brick-grey-600 hover:text-brick-grey-950 transition-colors group">
-        <ArrowLeft className="size-[13px] transition-transform group-hover:-translate-x-1" />
+    <aside className="w-[360px] shrink-0 h-full overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex flex-col">
+      <Link
+        to="/"
+        className="flex items-center gap-8 px-16 py-8 mb-4 text-13 text-brick-grey-600 hover:text-brick-grey-950 transition-colors group"
+      >
+        <ArrowLeft className="size-[14px] transition-transform group-hover:-translate-x-1" />
         Back
       </Link>
-
-      {/* Audience toggle */}
-      <div className="px-16 mb-16">
-        <div className="flex items-center bg-brick-grey-100 border border-brick-grey-300 rounded-8 p-[3px]">
-          {(['developers', 'designers'] as Audience[]).map(a => (
-            <button key={a} onClick={() => setAudience(a)}
-              className={`flex-1 py-[5px] rounded-6 text-[12px] font-medium capitalize transition-colors ${
-                audience === a
-                  ? 'bg-brick-grey-white text-brick-grey-950 shadow-sm border border-brick-grey-300'
-                  : 'text-brick-grey-600 hover:text-brick-grey-950'
-              }`}>
-              {a.charAt(0).toUpperCase() + a.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {sections.map(section => {
         const isOpen = openGroups[section.title] ?? true;
@@ -178,33 +167,6 @@ function LeftNav({
   );
 }
 
-// ─── Right ToC ────────────────────────────────────────────────────────────────
-
-function RightToC({ headings, activeId }: { headings: Heading[]; activeId: string }) {
-  return (
-    <aside className="w-[180px] shrink-0 h-[calc(100vh-56px)] sticky top-[56px] overflow-y-auto pl-24 pr-16 py-24 hidden xl:block">
-      <p className="text-[11px] font-semibold text-brick-grey-600 mb-10 uppercase tracking-[0.06em]">Contents</p>
-      <nav className="flex flex-col gap-[2px]">
-        {headings.map(h => (
-          <a
-            key={h.id}
-            href={`#${h.id}`}
-            className={`block text-[12px] leading-[1.4] py-[2px] transition-colors ${
-              h.level === 3 ? 'pl-12' : ''
-            } ${
-              activeId === h.id
-                ? 'text-active-blue-600 font-medium'
-                : 'text-brick-grey-600 hover:text-brick-grey-900'
-            }`}
-          >
-            {h.text}
-          </a>
-        ))}
-      </nav>
-    </aside>
-  );
-}
-
 // ─── Developer content ────────────────────────────────────────────────────────
 
 const DEV_NAV: NavSection[] = [
@@ -228,29 +190,15 @@ const DEV_NAV: NavSection[] = [
   },
 ];
 
-const DEV_HEADINGS: Heading[] = [
-  { id: 'dev-prerequisites', text: 'Prerequisites',         level: 2 },
-  { id: 'dev-node',          text: 'Node.js',               level: 3 },
-  { id: 'dev-git',           text: 'Git',                   level: 3 },
-  { id: 'dev-editor',        text: 'Code editor',           level: 3 },
-  { id: 'dev-clone',         text: 'Clone & install',       level: 2 },
-  { id: 'dev-structure',     text: 'Project structure',     level: 2 },
-  { id: 'dev-server',        text: 'Dev server',            level: 2 },
-  { id: 'dev-components',    text: 'Using components',      level: 2 },
-  { id: 'dev-tokens',        text: 'Design tokens',         level: 2 },
-  { id: 'dev-extend',        text: 'Extending components',  level: 2 },
-  { id: 'dev-darkmode',      text: 'Dark mode',             level: 2 },
-];
-
 function DeveloperContent() {
   return (
     <article className="min-w-0">
 
       <H2 id="dev-prerequisites">Prerequisites</H2>
-      <P>Before you start, make sure your machine has the following installed. Brick DS works out of the box once these are in place — no extra configuration required.</P>
+      <P>Before you start, make sure your machine has the following installed. Brick Design System works out of the box once these are in place — no extra configuration required.</P>
 
       <H3 id="dev-node">Node.js</H3>
-      <P>Brick DS requires <Strong>Node.js 18 or later</Strong>. We recommend the latest LTS release. Check your version:</P>
+      <P>Brick Design System requires <Strong>Node.js 18 or later</Strong>. We recommend the latest LTS release. Check your version:</P>
       <CodeBlock code={`node --version\n# should print v18.0.0 or higher`} />
       <P>If you don't have Node installed, download it from <A href="https://nodejs.org">nodejs.org</A> or use a version manager like <IC>nvm</IC> or <IC>fnm</IC>.</P>
 
@@ -345,7 +293,7 @@ function DeveloperContent() {
       <CodeBlock code={`// src/components/Chip/Chip.tsx\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst chipVariants = cva(\n  'inline-flex items-center px-10 py-4 rounded-full text-13 font-medium',\n  {\n    variants: {\n      variant: {\n        default:  'bg-brick-grey-100 text-brick-grey-700',\n        selected: 'bg-brick-blue-500 text-white',\n      },\n    },\n    defaultVariants: { variant: 'default' },\n  }\n);\n\nexport interface ChipProps\n  extends React.ComponentPropsWithoutRef<'span'>,\n    VariantProps<typeof chipVariants> {\n  label: string;\n}\n\nexport function Chip({ variant, label, className, ...props }: ChipProps) {\n  return (\n    <span className={cn(chipVariants({ variant }), className)} {...props}>\n      {label}\n    </span>\n  );\n}`} />
 
       <H2 id="dev-darkmode">Dark mode</H2>
-      <P>Brick DS ships with a full dark mode implementation. The <IC>ThemeProvider</IC> in <IC>src/lib/theme.tsx</IC> manages the current theme via localStorage and respects the OS-level preference on first load.</P>
+      <P>Brick Design System ships with a full dark mode implementation. The <IC>ThemeProvider</IC> in <IC>src/lib/theme.tsx</IC> manages the current theme via localStorage and respects the OS-level preference on first load.</P>
       <CodeBlock code={`import { useTheme } from '@/lib/theme';\n\nexport function ThemeToggle() {\n  const { theme, setTheme } = useTheme();\n  return (\n    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>\n      Switch to {theme === 'dark' ? 'light' : 'dark'} mode\n    </button>\n  );\n}`} />
       <P>Dark mode works by overriding token values inside a <IC>.dark {'{}'}</IC> selector in <IC>tokens.css</IC>. You don't need <IC>dark:</IC> prefixes in components — token values swap automatically:</P>
       <CodeBlock code={`/* tokens.css */\n@theme {\n  --color-brick-grey-white: #ffffff;\n  --color-brick-grey-950:   #0f1117;\n}\n\n.dark {\n  --color-brick-grey-white: #0f1117;  /* flips in dark mode */\n  --color-brick-grey-950:   #f5f6f7;\n}`} />
@@ -378,34 +326,21 @@ const DESIGN_NAV: NavSection[] = [
   },
 ];
 
-const DESIGN_HEADINGS: Heading[] = [
-  { id: 'ds-overview',    text: 'Overview',                  level: 2 },
-  { id: 'ds-access',      text: 'Accessing the file',        level: 2 },
-  { id: 'ds-structure',   text: 'Library structure',         level: 2 },
-  { id: 'ds-publish',     text: 'Publishing the library',    level: 2 },
-  { id: 'ds-use',         text: 'Using in a new file',       level: 2 },
-  { id: 'ds-tokens',      text: 'Working with tokens',       level: 2 },
-  { id: 'ds-token-why',   text: 'Why tokens matter',         level: 3 },
-  { id: 'ds-token-names', text: 'Token naming',              level: 3 },
-  { id: 'ds-components',  text: 'Working with components',   level: 2 },
-  { id: 'ds-handoff',     text: 'Designer–dev handoff',      level: 2 },
-];
-
 function DesignerContent() {
   return (
     <article className="min-w-0">
 
       <H2 id="ds-overview">Overview</H2>
-      <P>Brick DS has a Figma library that mirrors this site's component set exactly. Every component, token, and variant in the code has a corresponding element in Figma — so what you design is what gets built, without gaps in translation.</P>
+      <P>Brick Design System has a Figma library that mirrors this site's component set exactly. Every component, token, and variant in the code has a corresponding element in Figma — so what you design is what gets built, without gaps in translation.</P>
       <P>The library is designed to work for everyone — from a junior designer exploring variants for the first time, to a design lead maintaining consistency across a large product. You don't need to understand Figma variables to start using components, but learning them will make you significantly faster.</P>
 
       <H2 id="ds-access">Accessing the Figma file</H2>
-      <P>The Brick DS Figma library is available at the link below. You'll need a Figma account to access it — a free account is enough to view and duplicate. An Editor seat is required to publish it to a team.</P>
+      <P>The Brick Design System Figma library is available at the link below. You'll need a Figma account to access it — a free account is enough to view and duplicate. An Editor seat is required to publish it to a team.</P>
       <div className="mb-16 flex items-center gap-10 bg-brick-grey-100 border border-brick-grey-300 rounded-6 px-14 py-10">
         <Pen className="size-[14px] text-brick-grey-500 shrink-0" />
         <a href="https://www.figma.com/design/VBYwAGNFNHpEFc8a8RivIY/Assignment-6--10-components?node-id=5-3104" target="_blank" rel="noreferrer"
-          className="text-[14px] text-brick-blue-500 underline underline-offset-2 hover:text-brick-blue-600 break-all">
-          Brick DS — Main Library (Figma)
+          className="text-16 text-active-blue-600 underline underline-offset-2 hover:text-active-blue-700 break-all">
+          Brick Design System — Main Library (Figma)
         </a>
       </div>
       <P>If you see a "Request access" prompt, click it and the file owner will be notified. Alternatively, ask your team lead to add you to the project directly.</P>
@@ -423,7 +358,7 @@ function DesignerContent() {
       ]} />
 
       <H2 id="ds-publish">Publishing the library to your team</H2>
-      <P>Publishing makes Brick DS available to everyone in your Figma team — they can use components and tokens without needing access to the library file itself. You only need to do this once, and again whenever the library is updated.</P>
+      <P>Publishing makes Brick Design System available to everyone in your Figma team — they can use components and tokens without needing access to the library file itself. You only need to do this once, and again whenever the library is updated.</P>
       <P>You need an <Strong>Editor seat</Strong> and access to a Figma team to publish.</P>
       <OL>
         <NLI n={1}><Strong>Open the library file.</Strong> Make sure you have edit access — if you can only view, you won't see the publish option.</NLI>
@@ -433,14 +368,14 @@ function DesignerContent() {
         <NLI n={5}><Strong>Notify teammates.</Strong> Team members will see an update prompt the next time they open a file using the library. They can accept to get the latest components.</NLI>
       </OL>
 
-      <H2 id="ds-use">Using Brick DS in a new file</H2>
+      <H2 id="ds-use">Using Brick Design System in a new file</H2>
       <P>Once the library is published, enabling it in any Figma file takes seconds:</P>
       <OL>
         <NLI n={1}>Create a new Figma file or open an existing project file.</NLI>
         <NLI n={2}>Open the Assets panel (<IC>Option + 2</IC> / <IC>Alt + 2</IC>).</NLI>
         <NLI n={3}>Click the library icon at the top of the panel.</NLI>
-        <NLI n={4}>Find <Strong>Brick DS — Main Library</Strong> and toggle it on.</NLI>
-        <NLI n={5}>Components and variables from Brick DS are now available in this file.</NLI>
+        <NLI n={4}>Find <Strong>Brick Design System — Main Library</Strong> and toggle it on.</NLI>
+        <NLI n={5}>Components and variables from Brick Design System are now available in this file.</NLI>
       </OL>
       <P>In the Assets panel, search by component name (e.g. "Button", "Badge"). Drag a component into your frame, then use the right sidebar to change its properties — variant, size, state, and content are all exposed as Figma properties.</P>
       <Note>Never detach a component unless you have a very specific reason to. Detaching breaks the link to the library and means you'll miss future updates. Use component properties and layer overrides within the linked instance instead.</Note>
@@ -448,7 +383,7 @@ function DesignerContent() {
       <H2 id="ds-tokens">Working with tokens</H2>
       <H3 id="ds-token-why">Why tokens matter</H3>
       <P>Using a raw colour like <IC>#0d8bff</IC> in your design means that if the brand colour ever changes, every frame using that value needs to be updated manually. Using the <IC>brick/blue/500</IC> variable means updating the token once updates everything — in Figma and in the codebase — automatically.</P>
-      <P>To apply a colour token, select a layer, open Fill in the right sidebar, click the colour chip, then switch to <Strong>Libraries</Strong> in the colour picker. Browse to the Brick DS collection and choose a token. The fill is now linked.</P>
+      <P>To apply a colour token, select a layer, open Fill in the right sidebar, click the colour chip, then switch to <Strong>Libraries</Strong> in the colour picker. Browse to the Brick Design System collection and choose a token. The fill is now linked.</P>
 
       <H3 id="ds-token-names">Token naming reference</H3>
       <Table rows={[
@@ -463,7 +398,7 @@ function DesignerContent() {
       ]} />
 
       <H2 id="ds-components">Working with components</H2>
-      <P>All Brick DS components in Figma are built with Auto Layout and exposed properties, so resizing, swapping content, and toggling states work without detaching anything.</P>
+      <P>All Brick Design System components in Figma are built with Auto Layout and exposed properties, so resizing, swapping content, and toggling states work without detaching anything.</P>
       <UL>
         <LI><Strong>Changing a variant</Strong> — select a component instance. In the right sidebar under the component name you'll see properties (Variant, Size, State, toggle switches). Click a dropdown to change the variant.</LI>
         <LI><Strong>Overriding text</Strong> — double-click any text layer inside an instance to edit it. The override is preserved when the library updates.</LI>
@@ -473,7 +408,7 @@ function DesignerContent() {
       <Note>When designing error or disabled states, always use the component's State property. States are defined to match coded behaviour exactly — manually recreating them drifts from the implementation.</Note>
 
       <H2 id="ds-handoff">Designer–developer handoff</H2>
-      <P>A design built with Brick DS components and tokens is already most of the way to a clean handoff — developers can look up any component on this site for the exact props, code snippet, and usage guidance. These practices make the process even smoother:</P>
+      <P>A design built with Brick Design System components and tokens is already most of the way to a clean handoff — developers can look up any component on this site for the exact props, code snippet, and usage guidance. These practices make the process even smoother:</P>
       <UL>
         <LI><Strong>Name your frames clearly.</Strong> Use descriptive names like <em>Account Settings / Mobile / Error state</em> rather than <em>Frame 24</em>. Developers navigate the file by frame name.</LI>
         <LI><Strong>Design all states explicitly.</Strong> Don't leave error, disabled, or loading states implied. The component's State property makes showing them take seconds.</LI>
@@ -488,20 +423,28 @@ function DesignerContent() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+const TABS: { id: Audience; label: string }[] = [
+  { id: 'developers', label: 'Developers' },
+  { id: 'designers',  label: 'Designers'  },
+];
+
 export function SetupPage() {
   const [audience, setAudience] = useState<Audience>('developers');
-  const navSections = audience === 'developers' ? DEV_NAV    : DESIGN_NAV;
-  const headings    = audience === 'developers' ? DEV_HEADINGS : DESIGN_HEADINGS;
+  const navSections = audience === 'developers' ? DEV_NAV : DESIGN_NAV;
 
   const allItems = navSections.flatMap(s => s.items);
   const [activeId, setActiveId] = useState(allItems[0].id);
-  const contentRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = useCallback((id: string) => {
     const target = document.getElementById(id);
     const container = contentRef.current;
     if (!target || !container) return;
-    container.scrollTo({ top: target.offsetTop - 24, behavior: 'smooth' });
+    const offset = target.getBoundingClientRect().top
+      - container.getBoundingClientRect().top
+      + container.scrollTop
+      - 24;
+    container.scrollTo({ top: offset, behavior: 'smooth' });
     setActiveId(id);
   }, []);
 
@@ -524,50 +467,65 @@ export function SetupPage() {
     return () => el.removeEventListener('scroll', handler);
   }, [allItems]);
 
-  // Track active heading for right ToC
-  const [activeTocId, setActiveTocId] = useState(headings[0].id);
-  useEffect(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const handler = () => {
-      for (const h of [...headings].reverse()) {
-        const t = document.getElementById(h.id);
-        if (t && t.getBoundingClientRect().top <= 80) {
-          setActiveTocId(h.id);
-          return;
-        }
-      }
-      setActiveTocId(headings[0].id);
-    };
-    el.addEventListener('scroll', handler);
-    return () => el.removeEventListener('scroll', handler);
-  }, [headings]);
-
   // Reset on audience change
   useEffect(() => {
     const firstId = navSections[0].items[0].id;
     setActiveId(firstId);
-    setActiveTocId(headings[0].id);
     contentRef.current?.scrollTo({ top: 0 });
   }, [audience]);
 
   return (
-    <div className="flex flex-1 min-h-[calc(100vh-56px)]">
+    <div className="flex h-[calc(100vh-56px)]">
+
+      {/* ── Left nav ── */}
       <LeftNav
-        audience={audience}
-        setAudience={setAudience}
         sections={navSections}
         activeId={activeId}
         onNav={scrollTo}
       />
 
-      <main ref={contentRef} className="flex-1 overflow-y-auto">
-        <div className="max-w-[680px] px-32 py-32">
-          {audience === 'developers' ? <DeveloperContent /> : <DesignerContent />}
-        </div>
-      </main>
+      {/* ── Right column ── */}
+      <div className="flex flex-col flex-1 overflow-hidden">
 
-      <RightToC headings={headings} activeId={activeTocId} />
+        {/* Header + tab bar — sticky, never scrolls away */}
+        <div className="shrink-0 bg-brick-grey-white border-b border-brick-grey-300 px-48 pt-40 pb-0">
+          <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">
+            Setup guide
+          </p>
+          <h1 className="text-32 font-bold text-brick-grey-950 mb-4">How to use Brick Design System</h1>
+          <p className="text-16 text-brick-grey-600 leading-24 mb-24 max-w-[560px]">
+            Everything you need to start using the design system — whether you're writing code or designing in Figma.
+          </p>
+
+          {/* Tab bar — identical style to ComponentTabs */}
+          <div className="flex items-end gap-0">
+            {TABS.map(t => (
+              <button
+                key={t.id}
+                onClick={() => setAudience(t.id)}
+                className={`relative py-12 mr-24 text-14 font-medium transition-colors focus:outline-none ${
+                  audience === t.id
+                    ? 'text-brick-blue-500'
+                    : 'text-brick-grey-600 hover:text-brick-grey-950'
+                }`}
+              >
+                {t.label}
+                {audience === t.id && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brick-blue-500 rounded-full" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Scrollable content */}
+        <div ref={contentRef} className="flex-1 overflow-y-auto">
+          <div className="max-w-[680px] px-48 py-40">
+            {audience === 'developers' ? <DeveloperContent /> : <DesignerContent />}
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }

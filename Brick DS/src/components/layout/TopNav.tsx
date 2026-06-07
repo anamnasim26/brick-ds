@@ -7,6 +7,7 @@ import { useTheme } from '@/lib/theme';
 const NAV_LINKS = [
   { label: 'Foundations', to: '/foundations' },
   { label: 'Components',  to: '/components'  },
+  { label: 'How to use',  to: '/setup'       },
 ];
 
 export function TopNav() {
@@ -22,11 +23,11 @@ export function TopNav() {
         <div className="flex justify-between items-center gap-8 w-full md:w-auto">
           <Link
             to="/"
-            className="flex items-center gap-12 group focus:outline-none"
-            aria-label="Brick DS home"
+            className="flex items-center gap-8 group focus:outline-none"
+            aria-label="Brick Design System home"
           >
-            <div className="size-8 rounded-4 bg-brick-blue-500 group-hover:bg-brick-blue-400 transition-colors shrink-0" />
-            <span className="font-bold text-16 text-brick-grey-950 tracking-tight">Brick DS</span>
+            <img src="/logo.svg" alt="" width="28" height="28" className="shrink-0 rounded-6" />
+            <span className="font-bold text-16 text-brick-grey-950 tracking-tight">Brick Design System</span>
           </Link>
 
           {/* Hamburger — only visible on mobile */}

@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowLeft, ChevronDown, ChevronRight,
-  Terminal, Package, Component, Palette,
-  BookOpen, Pen, Paintbrush, FileCode,
+  ArrowLeft, ChevronDown, ChevronRight, Pen,
 } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────

@@ -107,7 +107,7 @@ export function Colours() {
           <div key={label}>
             <h2 className="text-16 font-semibold text-brick-grey-950 mb-16">{label}</h2>
             <div className="flex gap-4">
-              {swatches.map(({ name, hex, textDark }) => (
+              {swatches.map(({ name, hex }) => (
                 <div key={name} className="flex-1">
                   <div
                     className="h-[64px] rounded-8 mb-8"

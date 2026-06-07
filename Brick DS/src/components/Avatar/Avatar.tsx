@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { type ComponentPropsWithoutRef } from 'react';
 import { User } from 'lucide-react';
 import { cn } from '@/lib/utils';

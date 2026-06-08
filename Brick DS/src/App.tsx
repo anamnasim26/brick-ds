@@ -20,6 +20,7 @@ import { InputPage } from '@/pages/components/InputPage';
 import { RadioPage }   from '@/pages/components/RadioPage';
 import { TooltipPage } from '@/pages/components/TooltipPage';
 import { SwitchPage }  from '@/pages/components/SwitchPage';
+import { TabsPage }    from '@/pages/components/TabsPage';
 
 export default function App() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="radio"       element={<RadioPage />} />
             <Route path="tooltip"     element={<TooltipPage />} />
             <Route path="switch"      element={<SwitchPage />} />
+            <Route path="tabs"        element={<TabsPage />} />
           </Route>
         </Routes>
       </div>

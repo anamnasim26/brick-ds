@@ -5,7 +5,7 @@ export function Spacing() {
     <div className="p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Spacing</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
-        An 8-point spacing scale. All layout gaps, paddings, and margins are derived from these values.
+        An 8-point scale from 0 to 48px. All padding, margin, and gap values in the system come from these steps.
       </p>
 
       <div className="flex flex-col gap-16">

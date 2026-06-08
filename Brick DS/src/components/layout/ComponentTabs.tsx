@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { EmptyState } from '@/components/EmptyState';
 
 // ─── Tab bar ───────────────────────────────────────────────────────────────────
 
@@ -69,8 +70,14 @@ const CHANGE_TYPE_STYLES: Record<string, string> = {
 function ChangelogPanel({ entries }: { entries?: ChangelogEntry[] }) {
   if (!entries || entries.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center">
-        <p className="text-16 text-brick-grey-500">No changelog entries yet.</p>
+      <div className="flex flex-1 items-center justify-center p-48">
+        <EmptyState
+          illustrationType="No Data"
+          showIllustration={true}
+          headingText="Component in progress"
+          helperText="The Tabs component is currently being designed and built. Check back soon — it will support horizontal navigation with active states, disabled tabs, and optional badge counts."
+          showActionButtons={false}
+        />
       </div>
     );
   }

@@ -25,7 +25,7 @@ function ControlRow({ label, children }: { label: string; children: React.ReactN
   return (
     <div className="flex items-center justify-between gap-16 py-12 border-b border-brick-grey-300 last:border-none">
       <span className="text-14 font-semibold text-brick-grey-800 shrink-0">{label}</span>
-      <div className="flex items-center gap-8 flex-wrap justify-end">{children}</div>
+      <div className="flex flex-wrap items-center gap-4 justify-end">{children}</div>
     </div>
   );
 }
@@ -51,7 +51,7 @@ function TextInput({ value, onChange }: { value: string; onChange: (v: string) =
       type="text"
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-[360px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
+      className="w-[200px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
     />
   );
 }
@@ -62,7 +62,7 @@ function TextArea({ value, onChange }: { value: string; onChange: (v: string) =>
       rows={3}
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-[360px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white resize-none"
+      className="w-[200px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white resize-none"
     />
   );
 }
@@ -125,7 +125,7 @@ export function EmptyStatePage() {
         <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
         <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">empty state</h1>
         <p className="text-16 text-brick-grey-600 leading-24">
-          2 variants · 3 illustration types · optional heading, helper text, and action buttons.
+          Placeholder for screens with no content yet. Includes an illustration, heading, description, and up to two action buttons.
         </p>
       </div>
 
@@ -138,7 +138,7 @@ export function EmptyStatePage() {
           </div>
 
           <ControlRow label="Type">
-            <div className="flex flex-wrap gap-8 justify-end">
+            <div className="flex flex-wrap gap-4 justify-end">
               {TYPES.map(t => <ChipButton key={t} active={type === t} onClick={() => setType(t)}>{t}</ChipButton>)}
             </div>
           </ControlRow>
@@ -149,7 +149,7 @@ export function EmptyStatePage() {
 
           {showIllustration && (
             <ControlRow label="Illustration type">
-              <div className="flex flex-wrap gap-8 justify-end">
+              <div className="flex flex-wrap gap-4 justify-end">
                 {ILLUS.map(i => <ChipButton key={i} active={illustrationType === i} onClick={() => setIllustrationType(i)}>{i}</ChipButton>)}
               </div>
             </ControlRow>

@@ -23,7 +23,7 @@ function ControlRow({ label, children }: { label: string; children: React.ReactN
   return (
     <div className="flex items-center justify-between gap-16 py-12 border-b border-brick-grey-300 last:border-none">
       <span className="text-14 font-semibold text-brick-grey-800 shrink-0">{label}</span>
-      <div className="flex items-center gap-8 flex-wrap justify-end">{children}</div>
+      <div className="flex flex-wrap items-center gap-4 justify-end">{children}</div>
     </div>
   );
 }
@@ -49,7 +49,7 @@ function TextInput({ value, onChange }: { value: string; onChange: (v: string) =
       type="text"
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-[360px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
+      className="w-[200px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
     />
   );
 }
@@ -112,7 +112,7 @@ export function AlertPage() {
         <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
         <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">alert</h1>
         <p className="text-16 text-brick-grey-600 leading-24">
-          Inline alert with 5 colour variants, optional supporting text, actions, and close icon.
+          Inline message strip with five variants — general, success, warning, failure, and info. Supports a heading, body text, two actions, and a close button.
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export function AlertPage() {
           </div>
 
           <ControlRow label="Variant">
-            <div className="flex flex-wrap gap-8 justify-end">
+            <div className="flex flex-wrap gap-4 justify-end">
               {VARIANTS.map(v => (
                 <ChipButton key={v} active={variant === v} onClick={() => setVariant(v)}>{v}</ChipButton>
               ))}

@@ -17,7 +17,7 @@ export function Radius() {
     <div className="p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Radius</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
-        Border radius tokens used across all components. Use <code className="text-14 font-mono bg-brick-grey-200 px-6 py-2 rounded-4">rounded</code> for fully circular elements.
+        Corner radius tokens from 0 to 24px, plus <code className="text-14 font-mono bg-brick-grey-200 px-6 py-2 rounded-4">rounded</code> for full pills and avatars.
       </p>
 
       <div className="grid grid-cols-4 gap-16">

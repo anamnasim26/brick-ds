@@ -28,7 +28,7 @@ function ControlRow({ label, children }: { label: string; children: React.ReactN
   return (
     <div className="flex items-center justify-between gap-16 py-12 border-b border-brick-grey-300 last:border-none">
       <span className="text-14 font-semibold text-brick-grey-800 shrink-0">{label}</span>
-      <div className="flex items-center gap-8 flex-wrap justify-end">{children}</div>
+      <div className="flex flex-wrap items-center gap-4 justify-end">{children}</div>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function TextInput({ value, onChange }: { value: string; onChange: (v: string) =
       type="text"
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-[360px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
+      className="w-[200px] text-14 text-brick-grey-900 border border-brick-grey-400 rounded-8 px-8 py-4 focus:outline-none focus:border-active-blue-500 bg-brick-grey-white"
     />
   );
 }
@@ -121,7 +121,7 @@ export function ButtonPage() {
         <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
         <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">button</h1>
         <p className="text-16 text-brick-grey-600 leading-24">
-          6 semantic variants · 3 sizes · 5 states · optional left/right icons.
+          Six variants, three sizes, five states, and optional left/right icon slots. Primary is for the main action; everything else plays a supporting role.
         </p>
       </div>
 
@@ -134,7 +134,7 @@ export function ButtonPage() {
           </div>
 
           <ControlRow label="Type">
-            <div className="flex flex-wrap gap-8 justify-end">
+            <div className="flex flex-wrap gap-4 justify-end">
               {VARIANTS.map(v => (
                 <ChipButton key={v} active={variant === v} onClick={() => setVariant(v)}>{v}</ChipButton>
               ))}
@@ -142,7 +142,7 @@ export function ButtonPage() {
           </ControlRow>
 
           <ControlRow label="State">
-            <div className="flex flex-wrap gap-8 justify-end">
+            <div className="flex flex-wrap gap-4 justify-end">
               {STATES.map(s => (
                 <ChipButton key={s} active={state === s} onClick={() => setState(s)}>{s}</ChipButton>
               ))}
@@ -150,7 +150,7 @@ export function ButtonPage() {
           </ControlRow>
 
           <ControlRow label="Size">
-            <div className="flex flex-wrap gap-8 justify-end">
+            <div className="flex flex-wrap gap-4 justify-end">
               {SIZES.map(s => (
                 <ChipButton key={s} active={size === s} onClick={() => setSize(s)}>{s}</ChipButton>
               ))}

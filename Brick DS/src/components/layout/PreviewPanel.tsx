@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Check, Copy, Eye, Code } from 'lucide-react';
+import { Button } from '@/components/Button';
 
 // ─── Syntax highlighter ────────────────────────────────────────────────────────
-// Tokenises JSX source into coloured spans — no external deps needed.
 
 type Token = { type: 'tag' | 'prop' | 'string' | 'expr' | 'punct' | 'plain'; text: string };
 
@@ -11,7 +11,6 @@ function tokenise(code: string): Token[] {
   let i = 0;
 
   while (i < code.length) {
-    // String value  "..."
     if (code[i] === '"') {
       const end = code.indexOf('"', i + 1);
       if (end === -1) { tokens.push({ type: 'string', text: code.slice(i) }); break; }
@@ -19,7 +18,6 @@ function tokenise(code: string): Token[] {
       i = end + 1;
       continue;
     }
-    // JSX expression  {...}
     if (code[i] === '{') {
       let depth = 0, j = i;
       while (j < code.length) {
@@ -31,9 +29,7 @@ function tokenise(code: string): Token[] {
       i = j;
       continue;
     }
-    // Opening tag  <ComponentName  or  </ComponentName  or  />  or  >
     if (code[i] === '<') {
-      // self-close or close bracket
       if (code[i + 1] === '/') {
         const end = code.indexOf('>', i);
         if (end === -1) { tokens.push({ type: 'punct', text: code.slice(i) }); break; }
@@ -46,13 +42,11 @@ function tokenise(code: string): Token[] {
       }
       tokens.push({ type: 'punct', text: '<' });
       i++;
-      // tag name (PascalCase or lowercase)
       let j = i;
       while (j < code.length && /[A-Za-z0-9._-]/.test(code[j])) j++;
       if (j > i) { tokens.push({ type: 'tag', text: code.slice(i, j) }); i = j; }
       continue;
     }
-    // self-close  />
     if (code[i] === '/' && code[i + 1] === '>') {
       tokens.push({ type: 'punct', text: '/>' });
       i += 2;
@@ -63,12 +57,10 @@ function tokenise(code: string): Token[] {
       i++;
       continue;
     }
-    // Prop name:  word followed by =  or  standalone (boolean shorthand)
     if (/[a-z_]/i.test(code[i])) {
       let j = i;
       while (j < code.length && /[A-Za-z0-9_]/.test(code[j])) j++;
       const word = code.slice(i, j);
-      // is next char '=' or space/newline/> — treat as prop name
       const next = code[j];
       if (next === '=' || next === '\n' || next === ' ' || next === '\r') {
         tokens.push({ type: 'prop', text: word });
@@ -78,7 +70,6 @@ function tokenise(code: string): Token[] {
       i = j;
       continue;
     }
-    // Everything else (whitespace, =, newlines)
     tokens.push({ type: 'plain', text: code[i] });
     i++;
   }
@@ -94,16 +85,30 @@ const TOKEN_CLASS: Record<Token['type'], string> = {
   plain:  'text-brick-grey-800',
 };
 
-function CodeBlock({ code }: { code: string }) {
-  const tokens = tokenise(code);
+// ─── CodeBlock ─────────────────────────────────────────────────────────────────
+
+function CodeBlock({ code, changedLines }: { code: string; changedLines: Set<number> }) {
+  const lines = code.split('\n');
+
   return (
-    <div className="w-full h-full flex flex-col bg-brick-grey-white">
-      <pre className="flex-1 overflow-auto p-24 pt-20 text-13 leading-[1.7] font-mono">
-        {tokens.map((t, i) => (
-          <span key={i} className={TOKEN_CLASS[t.type]}>{t.text}</span>
-        ))}
-      </pre>
-    </div>
+    <pre className="flex-1 overflow-auto p-24 text-13 leading-[1.7] font-mono">
+      {lines.map((line, lineIdx) => {
+        const isChanged = changedLines.has(lineIdx);
+        const lineTokens = tokenise(line);
+        return (
+          <div
+            key={lineIdx}
+            className="rounded-4 transition-colors duration-100"
+            style={isChanged ? { backgroundColor: 'rgba(13, 139, 255, 0.08)' } : undefined}
+          >
+            {lineTokens.map((t, i) => (
+              <span key={i} className={TOKEN_CLASS[t.type]}>{t.text}</span>
+            ))}
+            {'\n'}
+          </div>
+        );
+      })}
+    </pre>
   );
 }
 
@@ -117,6 +122,29 @@ interface PreviewPanelProps {
 export function PreviewPanel({ code, children }: PreviewPanelProps) {
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
   const [copied, setCopied] = useState(false);
+  const [changedLines, setChangedLines] = useState<Set<number>>(new Set());
+  const prevCodeRef = useRef<string>(code);
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const prev = prevCodeRef.current;
+    if (prev === code) return;
+
+    const prevLines = prev.split('\n');
+    const nextLines = code.split('\n');
+    const changed = new Set<number>();
+    const maxLen = Math.max(prevLines.length, nextLines.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (prevLines[i] !== nextLines[i]) changed.add(i);
+    }
+
+    prevCodeRef.current = code;
+    if (changed.size === 0) return;
+
+    setChangedLines(changed);
+    if (clearTimerRef.current) clearTimeout(clearTimerRef.current);
+    clearTimerRef.current = setTimeout(() => setChangedLines(new Set()), 1200);
+  }, [code]);
 
   const copy = () => {
     navigator.clipboard.writeText(code);
@@ -125,50 +153,52 @@ export function PreviewPanel({ code, children }: PreviewPanelProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-0 relative">
-      {/* Top-right controls */}
-      <div className="absolute top-16 right-16 z-20 flex items-center gap-8">
-
-        {/* Copy button — only shown on code tab */}
-        {tab === 'code' && (
-          <button
+    <div className="flex-1 flex flex-col min-h-0">
+      {/* Shared header bar */}
+      <div className="flex items-center justify-between px-12 py-[3px] border-b border-brick-grey-300 bg-brick-grey-white shrink-0">
+        {/* Left: copy button (code tab only) or spacer */}
+        {tab === 'code' ? (
+          <Button
+            variant="Secondary"
+            size="Small"
+            state={copied ? 'Default' : 'Default'}
+            label={copied ? 'Copied' : 'Copy'}
+            leftIcon={copied ? <Check className="size-[16px]" /> : <Copy className="size-[16px]" />}
+            showLeftIcon
+            showRightIcon={false}
+            withText
             onClick={copy}
-            title="Copy code"
-            className="flex items-center gap-5 px-8 py-[5px] rounded-8 border border-brick-grey-300 bg-brick-grey-white text-brick-grey-600 hover:text-brick-grey-950 hover:bg-brick-grey-100 transition-colors text-11 font-medium shadow-sm"
-          >
-            {copied
-              ? <><Check className="size-[11px]" />Copied</>
-              : <><Copy className="size-[11px]" />Copy</>
-            }
-          </button>
+          />
+        ) : (
+          <span className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em]">Preview</span>
         )}
 
-        {/* Preview / Code toggle */}
+        {/* Right: Preview / Code toggle */}
         <div className="flex items-center bg-brick-grey-white border border-brick-grey-300 rounded-8 p-[3px] shadow-sm">
-        {([
-          { id: 'preview', icon: Eye,  label: 'Preview' },
-          { id: 'code',    icon: Code, label: 'Code'    },
-        ] as const).map(({ id, icon: Icon, label }) => (
-          <button
-            key={id}
-            onClick={() => setTab(id)}
-            aria-label={label}
-            title={label}
-            className={`size-[30px] flex items-center justify-center rounded-6 transition-colors ${
-              tab === id
-                ? 'bg-brick-grey-950 text-brick-grey-white'
-                : 'text-brick-grey-600 hover:text-brick-grey-950'
-            }`}
-          >
-            <Icon className="size-[14px]" />
-          </button>
-        ))}
-        </div>{/* end toggle pill */}
-      </div>{/* end top-right controls */}
+          {([
+            { id: 'preview', icon: Eye,  label: 'Preview' },
+            { id: 'code',    icon: Code, label: 'Code'    },
+          ] as const).map(({ id, icon: Icon, label }) => (
+            <button
+              key={id}
+              onClick={() => setTab(id)}
+              aria-label={label}
+              title={label}
+              className={`size-[30px] flex items-center justify-center rounded-6 transition-colors ${
+                tab === id
+                  ? 'bg-brick-grey-950 text-brick-grey-white'
+                  : 'text-brick-grey-600 hover:text-brick-grey-950'
+              }`}
+            >
+              <Icon className="size-[14px]" />
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Preview */}
       {tab === 'preview' && (
-        <div className="flex-1 bg-brick-grey-100 flex items-center justify-center p-48">
+        <div className="ds-preview flex-1 bg-brick-grey-100 flex items-center justify-center p-48">
           {children}
         </div>
       )}
@@ -176,7 +206,7 @@ export function PreviewPanel({ code, children }: PreviewPanelProps) {
       {/* Code */}
       {tab === 'code' && (
         <div className="flex-1 overflow-hidden">
-          <CodeBlock code={code} />
+          <CodeBlock code={code} changedLines={changedLines} />
         </div>
       )}
     </div>

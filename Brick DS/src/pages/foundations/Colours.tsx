@@ -1,14 +1,14 @@
-type Swatch = { name: string; hex: string; textDark?: boolean };
+type Swatch = { name: string; hex: string };
 type Palette = { label: string; swatches: Swatch[] };
 
 const PALETTES: Palette[] = [
   {
     label: 'Brick Blue',
     swatches: [
-      { name: '50', hex: '#EAEEF1', textDark: true },
-      { name: '100', hex: '#D6DEE3', textDark: true },
-      { name: '200', hex: '#ACBCC8', textDark: true },
-      { name: '300', hex: '#839BAC', textDark: true },
+      { name: '50',  hex: '#EAEEF1' },
+      { name: '100', hex: '#D6DEE3' },
+      { name: '200', hex: '#ACBCC8' },
+      { name: '300', hex: '#839BAC' },
       { name: '400', hex: '#5C768A' },
       { name: '500', hex: '#425563' },
       { name: '600', hex: '#3C4D5A' },
@@ -20,11 +20,11 @@ const PALETTES: Palette[] = [
   {
     label: 'Brick Grey',
     swatches: [
-      { name: '100', hex: '#FAFAFA', textDark: true },
-      { name: '200', hex: '#F5F5F5', textDark: true },
-      { name: '300', hex: '#F0F0F0', textDark: true },
-      { name: '400', hex: '#D9D9D9', textDark: true },
-      { name: '500', hex: '#BFBFBF', textDark: true },
+      { name: '100', hex: '#FAFAFA' },
+      { name: '200', hex: '#F5F5F5' },
+      { name: '300', hex: '#F0F0F0' },
+      { name: '400', hex: '#D9D9D9' },
+      { name: '500', hex: '#BFBFBF' },
       { name: '600', hex: '#8C8C8C' },
       { name: '700', hex: '#595959' },
       { name: '800', hex: '#434343' },
@@ -35,10 +35,10 @@ const PALETTES: Palette[] = [
   {
     label: 'Error Red',
     swatches: [
-      { name: '50', hex: '#FFEBE9', textDark: true },
-      { name: '100', hex: '#FFCECB', textDark: true },
-      { name: '200', hex: '#FFABA8', textDark: true },
-      { name: '300', hex: '#FF8182', textDark: true },
+      { name: '50',  hex: '#FFEBE9' },
+      { name: '100', hex: '#FFCECB' },
+      { name: '200', hex: '#FFABA8' },
+      { name: '300', hex: '#FF8182' },
       { name: '400', hex: '#FA4549' },
       { name: '500', hex: '#CF222E' },
       { name: '600', hex: '#A40E26' },
@@ -50,10 +50,10 @@ const PALETTES: Palette[] = [
   {
     label: 'Success Green',
     swatches: [
-      { name: '50', hex: '#DAFBE1', textDark: true },
-      { name: '100', hex: '#ACEEBB', textDark: true },
-      { name: '200', hex: '#6FDD8B', textDark: true },
-      { name: '300', hex: '#4AC26B', textDark: true },
+      { name: '50',  hex: '#DAFBE1' },
+      { name: '100', hex: '#ACEEBB' },
+      { name: '200', hex: '#6FDD8B' },
+      { name: '300', hex: '#4AC26B' },
       { name: '400', hex: '#2DA44E' },
       { name: '500', hex: '#1A7F37' },
       { name: '600', hex: '#116329' },
@@ -65,14 +65,14 @@ const PALETTES: Palette[] = [
   {
     label: 'Warning Yellow',
     swatches: [
-      { name: '50', hex: '#FEF9E6', textDark: true },
-      { name: '100', hex: '#FBECB0', textDark: true },
-      { name: '200', hex: '#F9E38A', textDark: true },
-      { name: '300', hex: '#F7D654', textDark: true },
-      { name: '400', hex: '#F5CE33', textDark: true },
-      { name: '500', hex: '#F3C200', textDark: true },
-      { name: '600', hex: '#DDB100', textDark: true },
-      { name: '700', hex: '#AD8A00', textDark: true },
+      { name: '50',  hex: '#FEF9E6' },
+      { name: '100', hex: '#FBECB0' },
+      { name: '200', hex: '#F9E38A' },
+      { name: '300', hex: '#F7D654' },
+      { name: '400', hex: '#F5CE33' },
+      { name: '500', hex: '#F3C200' },
+      { name: '600', hex: '#DDB100' },
+      { name: '700', hex: '#AD8A00' },
       { name: '800', hex: '#806600' },
       { name: '900', hex: '#665100' },
     ],
@@ -80,10 +80,10 @@ const PALETTES: Palette[] = [
   {
     label: 'Active Blue',
     swatches: [
-      { name: '50', hex: '#E7F3FF', textDark: true },
-      { name: '100', hex: '#B4DBFF', textDark: true },
-      { name: '200', hex: '#90CAFF', textDark: true },
-      { name: '300', hex: '#5DB1FF', textDark: true },
+      { name: '50',  hex: '#E7F3FF' },
+      { name: '100', hex: '#B4DBFF' },
+      { name: '200', hex: '#90CAFF' },
+      { name: '300', hex: '#5DB1FF' },
       { name: '400', hex: '#3DA2FF' },
       { name: '500', hex: '#0D8BFF' },
       { name: '600', hex: '#0C7EE8' },
@@ -99,7 +99,7 @@ export function Colours() {
     <div className="p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Colours</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
-        The Brick colour palette — primitive tokens that power every component's semantic colour decisions.
+          Six palettes, ten shades each. Lighter values are for backgrounds and borders; darker ones are for text and icons.
       </p>
 
       <div className="flex flex-col gap-48">
@@ -108,11 +108,8 @@ export function Colours() {
             <h2 className="text-16 font-semibold text-brick-grey-950 mb-16">{label}</h2>
             <div className="flex gap-4">
               {swatches.map(({ name, hex }) => (
-                <div key={name} className="flex-1">
-                  <div
-                    className="h-[64px] rounded-8 mb-8"
-                    style={{ backgroundColor: hex }}
-                  />
+                <div key={name} className="flex-1 min-w-0">
+                  <div className="h-[64px] rounded-8 mb-8" style={{ backgroundColor: hex }} />
                   <p className="text-12 font-semibold text-brick-grey-800">{name}</p>
                   <p className="text-12 text-brick-grey-700 font-mono">{hex}</p>
                 </div>

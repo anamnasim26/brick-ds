@@ -108,6 +108,61 @@
   --color-active-blue-700: #5db1ff;    /* chip border + text   (was #0963b5)    */
 }
 
+/* ─── Component preview: always render in light-mode token values ─────────────
+   .ds-preview is applied to the preview panel's live-render area so that
+   components inside it always show exactly as they do in light mode,
+   regardless of the app-level dark-mode toggle.
+   ─────────────────────────────────────────────────────────────────────────── */
+.ds-preview {
+  /* ── Surfaces ─────────────────────────────────────────────────── */
+  --color-brick-grey-white: #ffffff;
+  --color-brick-grey-100:   #fafafa;
+  --color-brick-grey-200:   #f5f5f5;
+  --color-brick-grey-300:   #f0f0f0;
+  --color-brick-grey-400:   #d9d9d9;
+  --color-brick-grey-500:   #bfbfbf;
+  --color-brick-grey-600:   #8c8c8c;
+  --color-brick-grey-700:   #595959;
+  --color-brick-grey-800:   #434343;
+  --color-brick-grey-900:   #2e2e2e;
+  --color-brick-grey-950:   #242424;
+  --color-brick-grey-black: #000000;
+
+  /* ── Brand blue ───────────────────────────────────────────────── */
+  --color-brick-blue-50:  #eaeef1;
+  --color-brick-blue-100: #d6dee3;
+  --color-brick-blue-200: #acbcc8;
+  --color-brick-blue-300: #839bac;
+  --color-brick-blue-400: #5c768a;
+  --color-brick-blue-500: #425563;
+  --color-brick-blue-600: #3c4d5a;
+  --color-brick-blue-700: #2f3c46;
+
+  /* ── Active blue ──────────────────────────────────────────────── */
+  --color-active-blue-50:  #e7f3ff;
+  --color-active-blue-100: #b4dbff;
+  --color-active-blue-700: #0963b5;
+
+  /* ── Semantic colours — always light-mode values ──────────────── */
+  --color-success-green-50:  #dafbe1;
+  --color-success-green-100: #aceebb;
+  --color-success-green-400: #2da44e;
+  --color-success-green-500: #1a7f37;
+  --color-success-green-700: #044f1e;
+
+  --color-error-red-50:  #ffebe9;
+  --color-error-red-100: #ffcecb;
+  --color-error-red-400: #fa4549;
+  --color-error-red-500: #cf222e;
+  --color-error-red-700: #82071e;
+
+  --color-warning-yellow-50:  #fef9e6;
+  --color-warning-yellow-100: #fbecb0;
+  --color-warning-yellow-400: #f5ce33;
+  --color-warning-yellow-500: #f3c200;
+  --color-warning-yellow-700: #ad8a00;
+}
+
 /* ─── Cursor float animations (Landing hero) ──────────────────────────────── */
 @keyframes cursor-float-1 {
   0%, 100% { transform: translate(0px,  0px); }

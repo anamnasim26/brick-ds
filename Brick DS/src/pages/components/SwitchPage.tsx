@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { Switch, type SwitchProps } from '@/components/Switch/Switch';
+import { buttonVariants } from '@/components/Button/Button';
 import { PreviewPanel } from '@/components/layout/PreviewPanel';
 import { ComponentTabs, UsageDoc, BulletList, type ChangelogEntry } from '@/components/layout/ComponentTabs';
 import { type SwitchState } from '@/components/Switch/SwitchToggle';
@@ -96,12 +98,23 @@ export function SwitchPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Page header */}
-      <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white">
-        <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
-        <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">switch</h1>
-        <p className="text-16 text-brick-grey-600 leading-24">
-          Binary toggle for on/off settings. Changes apply immediately without a form submit. Supports default, hover, focus, and disabled states.
-        </p>
+      <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white flex items-start justify-between gap-24">
+        <div>
+          <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
+          <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">switch</h1>
+          <p className="text-16 text-brick-grey-600 leading-24">
+            Binary toggle for on/off settings. Changes apply immediately without a form submit. Supports default, hover, focus, and disabled states.
+          </p>
+        </div>
+        <a
+          href="https://brick-ds-storybook.vercel.app/?path=/docs/components-switch--docs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={buttonVariants({ variant: 'Secondary', size: 'Small' }) + ' shrink-0 mt-8'}
+        >
+          <span className="truncate">Storybook</span>
+          <ExternalLink className="size-[20px] shrink-0" />
+        </a>
       </div>
 
       <ComponentTabs usage={usageContent} changelog={changelog} playground={<div className="flex flex-1 min-h-0">

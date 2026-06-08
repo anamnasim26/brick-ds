@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { Avatar, type AvatarProps } from '@/components/Avatar';
+import { buttonVariants } from '@/components/Button/Button';
 import { PreviewPanel } from '@/components/layout/PreviewPanel';
 import { ComponentTabs, UsageDoc, BulletList, type ChangelogEntry } from '@/components/layout/ComponentTabs';
 
@@ -107,12 +109,23 @@ export function AvatarPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Page header */}
-      <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white">
-        <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
-        <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">avatar</h1>
-        <p className="text-16 text-brick-grey-600 leading-24">
-          Shows a person or entity. Comes in three modes — image, initials, or icon — across four sizes, with an optional status dot.
-        </p>
+      <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white flex items-start justify-between gap-24">
+        <div>
+          <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
+          <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">avatar</h1>
+          <p className="text-16 text-brick-grey-600 leading-24">
+            Shows a person or entity. Comes in three modes — image, initials, or icon — across four sizes, with an optional status dot.
+          </p>
+        </div>
+        <a
+          href="https://brick-ds-storybook.vercel.app/?path=/docs/components-avatar--docs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={buttonVariants({ variant: 'Secondary', size: 'Small' }) + ' shrink-0 mt-8'}
+        >
+          <span className="truncate">Storybook</span>
+          <ExternalLink className="size-[20px] shrink-0" />
+        </a>
       </div>
 
       <ComponentTabs usage={usageContent} changelog={changelog} playground={<div className="flex flex-1">

@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { Minus, Plus, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   [
     'inline-flex items-center justify-center gap-8 rounded-12',
     'font-heading font-semibold text-16 leading-24',

@@ -96,7 +96,7 @@ const TBadge = () => (
 
 // ─── Button ───────────────────────────────────────────────────────────────────
 const TButton = () => (
-  <div className="scale-[0.72] origin-center flex flex-col items-center gap-16">
+  <div className="scale-[0.58] origin-center flex flex-col items-center gap-16">
     {/* Row 1: Primary + Secondary */}
     <div className="flex gap-12 items-center">
       <button className="inline-flex items-center justify-center gap-8 rounded-12 font-semibold text-16 h-[44px] px-20 bg-brick-blue-400 text-brick-grey-white shadow-md">
@@ -169,8 +169,8 @@ const TEmptyState = () => (
         <p className="text-12 text-brick-grey-600 leading-[1.5]">This page provides a place to lay out information and document things better.</p>
       </div>
       <div className="flex gap-8">
-        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-blue-400 text-brick-grey-white">Create page</button>
-        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-grey-white text-brick-blue-500 border border-brick-grey-300">Learn more</button>
+        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-blue-400 text-brick-grey-white whitespace-nowrap shrink-0">Create page</button>
+        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-grey-white text-brick-blue-500 border border-brick-grey-300 whitespace-nowrap shrink-0">Learn more</button>
       </div>
     </div>
   </div>

@@ -157,22 +157,20 @@ const TCheckbox = () => (
 
 // ─── Empty State ──────────────────────────────────────────────────────────────
 const TEmptyState = () => (
-  <div className="w-full h-full flex items-center justify-center px-20">
-    <div className="flex items-center gap-20 p-20 rounded-16 bg-brick-grey-white border border-brick-grey-300 shadow-md w-full">
-      {/* Illustration */}
-      <div className="w-[72px] h-[72px] rounded-12 bg-brick-blue-100 flex items-center justify-center shrink-0">
-        <FolderOpen className="size-[36px] text-brick-blue-400" strokeWidth={1.25} />
+  <div className="scale-[0.72] origin-center flex items-center gap-20 p-20 rounded-16 bg-brick-grey-white border border-brick-grey-300 shadow-md w-[380px]">
+    {/* Illustration */}
+    <div className="w-[72px] h-[72px] rounded-12 bg-brick-blue-100 flex items-center justify-center shrink-0">
+      <FolderOpen className="size-[36px] text-brick-blue-400" strokeWidth={1.25} />
+    </div>
+    {/* Text + actions */}
+    <div className="flex flex-col gap-10 flex-1 min-w-0">
+      <div className="flex flex-col gap-4">
+        <p className="text-14 font-semibold text-brick-grey-950 leading-none">Welcome to the page</p>
+        <p className="text-12 text-brick-grey-600 leading-[1.5]">This page provides a place to lay out information and document things better.</p>
       </div>
-      {/* Text + actions */}
-      <div className="flex flex-col gap-10 flex-1 min-w-0">
-        <div className="flex flex-col gap-4">
-          <p className="text-14 font-semibold text-brick-grey-950 leading-none">Welcome to the page</p>
-          <p className="text-12 text-brick-grey-600 leading-[1.5]">This page provides a place to lay out information and document things better.</p>
-        </div>
-        <div className="flex gap-8">
-          <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-blue-400 text-brick-grey-white">Create page</button>
-          <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-grey-white text-brick-blue-500 border border-brick-grey-300">Learn more</button>
-        </div>
+      <div className="flex gap-8">
+        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-blue-400 text-brick-grey-white">Create page</button>
+        <button className="inline-flex items-center justify-center rounded-8 font-semibold text-12 h-[32px] px-12 bg-brick-grey-white text-brick-blue-500 border border-brick-grey-300">Learn more</button>
       </div>
     </div>
   </div>
@@ -305,14 +303,14 @@ export function ComponentsIndexPage() {
           <button
             key={to}
             onClick={() => navigate(to)}
-            className="text-left bg-brick-grey-white rounded-12 border border-brick-grey-300 overflow-hidden hover:border-brick-blue-300 hover:shadow-lg transition-all cursor-pointer group"
+            className="text-left bg-brick-grey-white rounded-12 border border-brick-grey-300 overflow-hidden hover:border-brick-blue-300 hover:shadow-lg transition-all cursor-pointer group flex flex-col"
           >
             <PreviewBox>{preview}</PreviewBox>
-            <div className="px-20 py-16 border-t border-brick-grey-300">
+            <div className="px-20 py-16 border-t border-brick-grey-300 flex flex-col flex-1">
               <h3 className="text-16 font-bold text-brick-grey-950 mb-4 group-hover:text-brick-blue-500 transition-colors">
                 {label}
               </h3>
-              <p className="text-13 text-brick-grey-600 leading-20">{description}</p>
+              <p className="text-13 text-brick-grey-600 leading-20 line-clamp-2">{description}</p>
             </div>
           </button>
         ))}

@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Moon, Sun, X } from 'lucide-react';
+import { Menu, Moon, Sun, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/lib/theme';
+import { SearchModal } from './SearchModal';
+import { buttonVariants } from '@/components/Button/Button';
 
 const NAV_LINKS = [
   { label: 'Foundations', to: '/foundations' },
@@ -11,9 +13,22 @@ const NAV_LINKS = [
 ];
 
 export function TopNav() {
-  const { pathname }          = useLocation();
-  const [isOpen, setIsOpen]   = useState(false);
-  const { theme, toggle }     = useTheme();
+  const { pathname }              = useLocation();
+  const [isOpen, setIsOpen]       = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const { theme, toggle }         = useTheme();
+
+  // ⌘K / Ctrl+K opens search
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(v => !v);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-brick-grey-white border-b border-brick-grey-300">
@@ -85,6 +100,31 @@ export function TopNav() {
           {/* Horizontal divider (mobile only) */}
           <div className="md:hidden w-full h-px bg-brick-grey-300" />
 
+          {/* Search button */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search"
+            className={cn(
+              buttonVariants({ variant: 'Secondary', size: 'Small', state: 'Default' }),
+              'hidden md:inline-flex max-w-none gap-8 px-12',
+            )}
+          >
+            <Search className="size-16 shrink-0" strokeWidth={2} />
+            <span className="text-14">Search…</span>
+          </button>
+
+          {/* Search icon — mobile only */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search"
+            className="md:hidden flex items-center gap-8 px-12 py-8 rounded-8 text-14 font-medium text-brick-grey-700 hover:bg-brick-grey-100 focus:outline-none transition-colors"
+          >
+            <Search className="size-[16px]" strokeWidth={2} />
+            Search
+          </button>
+
           {/* Theme toggle */}
           <button
             type="button"
@@ -100,6 +140,9 @@ export function TopNav() {
         </div>
 
       </nav>
+
+      {/* Search modal */}
+      {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }

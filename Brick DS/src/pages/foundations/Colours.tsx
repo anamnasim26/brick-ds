@@ -96,7 +96,7 @@ const PALETTES: Palette[] = [
 
 export function Colours() {
   return (
-    <div className="p-48">
+    <div className="p-16 sm:p-32 md:p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Colours</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
           Six palettes, ten shades each. Lighter values are for backgrounds and borders; darker ones are for text and icons.

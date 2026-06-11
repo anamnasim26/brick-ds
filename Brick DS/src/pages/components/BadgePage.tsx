@@ -97,10 +97,10 @@ export function BadgePage() {
   );
   return (
     <div className="flex flex-col h-full">
-      <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white flex items-start justify-between gap-24">
+      <div className="px-16 pt-24 pb-20 sm:px-32 sm:pt-32 sm:pb-24 md:px-48 md:pt-40 md:pb-32 border-b border-brick-grey-300 bg-brick-grey-white flex flex-wrap items-start justify-between gap-16 md:gap-24">
         <div>
           <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
-          <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">badge</h1>
+          <h1 className="text-32 sm:text-40 md:text-48 font-bold text-brick-grey-950 leading-tight mb-8 md:mb-12">badge</h1>
           <p className="text-16 text-brick-grey-600 leading-24">
             Small inline label for status, category, or priority. Five colour variants, with optional leading and trailing icons.
           </p>
@@ -116,8 +116,8 @@ export function BadgePage() {
         </a>
       </div>
 
-      <ComponentTabs usage={usageContent} changelog={changelog} playground={<div className="flex flex-1">
-        <div className="w-[600px] shrink-0 border-r border-brick-grey-300 bg-brick-grey-white p-24 flex flex-col">
+      <ComponentTabs usage={usageContent} changelog={changelog} playground={<div className="flex flex-col-reverse md:flex-row flex-1 min-h-0">
+        <div className="w-full md:w-[560px] md:shrink-0 border-t md:border-t-0 md:border-r border-brick-grey-300 bg-brick-grey-white p-24 flex flex-col">
           <div className="flex items-center justify-between mb-16">
             <p className="text-12 font-semibold text-brick-grey-600 uppercase tracking-[0.08em]">Playground</p>
             <button onClick={reset} className="text-12 text-brick-grey-600 hover:text-brick-grey-950 underline transition-colors">

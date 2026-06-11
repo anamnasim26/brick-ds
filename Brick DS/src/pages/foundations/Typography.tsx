@@ -12,7 +12,7 @@ const SIZES = [
 
 export function Typography() {
   return (
-    <div className="p-48">
+    <div className="p-16 sm:p-32 md:p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Typography</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-12">
         Font family: <span className="font-semibold text-brick-grey-900">Instrument Sans</span>

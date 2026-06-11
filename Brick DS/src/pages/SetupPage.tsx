@@ -122,7 +122,7 @@ function LeftNav({
   }, [sections]);
 
   return (
-    <aside className="w-[360px] shrink-0 h-full overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex flex-col">
+    <aside className="hidden md:flex w-[280px] lg:w-[360px] shrink-0 h-full overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex-col">
       <Link
         to="/"
         className="flex items-center gap-8 px-16 py-8 mb-4 text-13 text-brick-grey-600 hover:text-brick-grey-950 transition-colors group"
@@ -486,7 +486,7 @@ export function SetupPage() {
       <div className="flex flex-col flex-1 overflow-hidden">
 
         {/* Header + tab bar — sticky, never scrolls away */}
-        <div className="shrink-0 bg-brick-grey-white border-b border-brick-grey-300 px-48 pt-40 pb-0">
+        <div className="shrink-0 bg-brick-grey-white border-b border-brick-grey-300 px-16 pt-24 sm:px-32 sm:pt-32 md:px-48 md:pt-40 pb-0">
           <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">
             Setup guide
           </p>
@@ -518,7 +518,7 @@ export function SetupPage() {
 
         {/* Scrollable content */}
         <div ref={contentRef} className="flex-1 overflow-y-auto">
-          <div className="max-w-[680px] px-48 py-40">
+          <div className="max-w-[680px] px-16 py-24 sm:px-32 sm:py-32 md:px-48 md:py-40">
             {audience === 'developers' ? <DeveloperContent /> : <DesignerContent />}
           </div>
         </div>

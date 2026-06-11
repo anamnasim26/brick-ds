@@ -14,7 +14,7 @@ const SCALE = [
 
 export function Radius() {
   return (
-    <div className="p-48">
+    <div className="p-16 sm:p-32 md:p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Radius</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
         Corner radius tokens from 0 to 24px, plus <code className="text-14 font-mono bg-brick-grey-200 px-6 py-2 rounded-4">rounded</code> for full pills and avatars.

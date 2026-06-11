@@ -32,7 +32,7 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-brick-grey-white border-b border-brick-grey-300">
-      <nav className="relative w-full mx-auto flex md:items-center md:justify-between md:gap-12 flex-wrap md:flex-nowrap py-8 px-32">
+      <nav className="relative w-full mx-auto flex md:items-center md:justify-between md:gap-12 flex-wrap md:flex-nowrap py-8 px-16 md:px-32">
 
         {/* ── Logo + mobile toggle ── */}
         <div className="flex justify-between items-center gap-8 w-full md:w-auto">

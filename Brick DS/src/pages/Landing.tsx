@@ -30,7 +30,7 @@ interface CursorProps {
 function Cursor({ name, color, textColor = '#ffffff', mirror = false, style }: CursorProps) {
   return (
     <div
-      className="absolute pointer-events-none select-none"
+      className="absolute pointer-events-none select-none hidden sm:block"
       style={style}
     >
       {/* Outer wrapper — flipped for mirror mode */}
@@ -134,7 +134,7 @@ export function Landing() {
 
       {/* ── Hero ── */}
       <section
-        className="relative flex items-center justify-center overflow-hidden border-b border-brick-grey-300 bg-brick-grey-white px-48 min-h-[60vh]"
+        className="relative flex items-center justify-center overflow-hidden border-b border-brick-grey-300 bg-brick-grey-white px-16 sm:px-32 md:px-48 min-h-[50vh] md:min-h-[60vh] py-48 md:py-0"
         style={{
           backgroundImage:
             'radial-gradient(circle, var(--color-brick-grey-400) 1px, transparent 1px)',
@@ -196,16 +196,13 @@ export function Landing() {
             Brick Design System
           </p>
 
-          <h1
-            className="font-bold text-brick-grey-950 leading-[1.05] mb-24"
-            style={{ fontSize: '76px' }}
-          >
+          <h1 className="font-bold text-brick-grey-950 leading-[1.05] mb-24 text-[40px] sm:text-[56px] md:text-[76px]">
             Design and develop<br />
             with{' '}
             <span className="text-active-blue-500">confidence.</span>
           </h1>
 
-          <p className="text-20 text-brick-grey-600 leading-28 max-w-[480px]">
+          <p className="text-16 sm:text-18 md:text-20 text-brick-grey-600 leading-28 max-w-[480px]">
             Ship consistent interfaces using quality foundations,
             flexible components, and powerful tools.
           </p>
@@ -213,9 +210,9 @@ export function Landing() {
       </section>
 
       {/* ── Get started cards ── */}
-      <section className="px-48 py-48 bg-brick-grey-100">
-        <h2 className="text-24 font-bold text-brick-grey-950 mb-32">Get started</h2>
-        <div className="grid grid-cols-3 gap-24 max-w-[1200px]">
+      <section className="px-16 sm:px-32 md:px-48 py-32 md:py-48 bg-brick-grey-100">
+        <h2 className="text-20 md:text-24 font-bold text-brick-grey-950 mb-24 md:mb-32">Get started</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24 max-w-[1200px]">
           {CARDS.map(({ to, icon: Icon, title, description, iconClass, border }) => (
             <button
               key={to}

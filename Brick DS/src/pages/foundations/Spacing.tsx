@@ -2,7 +2,7 @@ const SCALE = [0, 4, 8, 12, 16, 20, 24, 28, 32, 40, 48];
 
 export function Spacing() {
   return (
-    <div className="p-48">
+    <div className="p-16 sm:p-32 md:p-48">
       <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Spacing</h1>
       <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
         An 8-point scale from 0 to 48px. All padding, margin, and gap values in the system come from these steps.

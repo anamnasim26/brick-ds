@@ -292,13 +292,13 @@ export function ComponentsIndexPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-48">
-      <h1 className="text-40 font-bold text-brick-grey-950 mb-8">Components</h1>
-      <p className="text-16 text-brick-grey-700 leading-24 mb-48 max-w-[560px]">
+    <div className="p-16 sm:p-32 md:p-48">
+      <h1 className="text-28 sm:text-36 md:text-40 font-bold text-brick-grey-950 mb-8">Components</h1>
+      <p className="text-16 text-brick-grey-700 leading-24 mb-32 md:mb-48 max-w-[560px]">
         Ten components, each with a live playground, usage notes, and a changelog. Built with CVA and Tailwind v4.
       </p>
 
-      <div className="grid grid-cols-2 xl:grid-cols-3 gap-24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16 md:gap-24">
         {COMPONENTS.map(({ to, label, description, preview }) => (
           <button
             key={to}

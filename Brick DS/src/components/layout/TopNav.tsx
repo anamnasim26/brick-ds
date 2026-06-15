@@ -9,6 +9,7 @@ import { buttonVariants } from '@/components/Button/Button';
 const NAV_LINKS = [
   { label: 'Foundations', to: '/foundations' },
   { label: 'Components',  to: '/components'  },
+  { label: 'Icons',       to: '/icons'       },
   { label: 'How to use',  to: '/setup'       },
 ];
 

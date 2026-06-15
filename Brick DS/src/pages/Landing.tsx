@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Layers, Box, BookOpen } from 'lucide-react';
+import { Layers, Box, BookOpen, Sparkles } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
 // ─── Cursor ───────────────────────────────────────────────────────────────────
@@ -114,6 +114,15 @@ const CARDS = [
     border: 'hover:border-success-green-300',
   },
   {
+    to: '/icons',
+    icon: Sparkles,
+    title: 'Icons',
+    description:
+      'Google Material Icons playground. Search, customize size and color, and explore all available icons with live preview.',
+    iconClass: 'bg-error-red-50 text-error-red-500',
+    border: 'hover:border-error-red-300',
+  },
+  {
     to: '/setup',
     icon: BookOpen,
     title: 'How to use',
@@ -211,8 +220,8 @@ export function Landing() {
 
       {/* ── Get started cards ── */}
       <section className="px-16 sm:px-32 md:px-48 py-32 md:py-48 bg-brick-grey-100">
-        <h2 className="text-20 md:text-24 font-bold text-brick-grey-950 mb-24 md:mb-32">Get started</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24 max-w-[1200px]">
+        <h2 className="text-20 md:text-24 font-bold text-brick-grey-950 mb-24 md:mb-32 text-center">Get started</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 md:gap-24 max-w-[900px] mx-auto">
           {CARDS.map(({ to, icon: Icon, title, description, iconClass, border }) => (
             <button
               key={to}

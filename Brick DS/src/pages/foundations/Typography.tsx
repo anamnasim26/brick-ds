@@ -12,14 +12,18 @@ const SIZES = [
 
 export function Typography() {
   return (
-    <div className="p-16 sm:p-32 md:p-48">
-      <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Typography</h1>
-      <p className="text-16 text-brick-grey-600 leading-24 mb-12">
-        Font family: <span className="font-semibold text-brick-grey-900">Instrument Sans</span>
-      </p>
-      <p className="text-16 text-brick-grey-600 leading-24 mb-48">
-        Weights: <span className="font-normal text-brick-grey-900">Regular (400)</span> · <span className="font-semibold text-brick-grey-900">Semibold (600)</span> · <span className="font-bold text-brick-grey-900">Bold (700)</span>
-      </p>
+    <div className="flex flex-col">
+      <div className="bg-brick-grey-white border-b border-brick-grey-300 px-16 pt-24 pb-24 sm:px-32 md:px-48 md:pt-40 md:pb-32">
+        <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">Foundations</p>
+        <h1 className="text-32 font-bold text-brick-grey-950 mb-4">Typography</h1>
+        <p className="text-16 text-brick-grey-600 leading-24 mb-4">
+          Font family: <span className="font-semibold text-brick-grey-900">Instrument Sans</span>
+        </p>
+        <p className="text-16 text-brick-grey-600 leading-24">
+          Weights: <span className="font-normal text-brick-grey-900">Regular (400)</span> · <span className="font-semibold text-brick-grey-900">Semibold (600)</span> · <span className="font-bold text-brick-grey-900">Bold (700)</span>
+        </p>
+      </div>
+      <div className="bg-brick-grey-100 px-16 py-24 sm:px-32 sm:py-32 md:px-48 md:py-40">
 
       <div className="flex flex-col divide-y divide-brick-grey-300 border border-brick-grey-300 rounded-12 overflow-hidden">
         {SIZES.map(({ name, px, lh, usage }) => (
@@ -37,6 +41,7 @@ export function Typography() {
             </p>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

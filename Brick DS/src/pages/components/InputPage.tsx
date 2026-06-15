@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
 import { PreviewPanel } from '@/components/layout/PreviewPanel';
-import { buttonVariants } from '@/components/Button/Button';
 import { ComponentTabs, UsageDoc, BulletList, type ChangelogEntry } from '@/components/layout/ComponentTabs';
 import { Input, type InputState } from '@/components/Input';
 
@@ -113,24 +111,15 @@ export function InputPage() {
     <div className="flex flex-col h-full">
       <div className="px-16 pt-24 pb-20 sm:px-32 sm:pt-32 sm:pb-24 md:px-48 md:pt-40 md:pb-32 border-b border-brick-grey-300 bg-brick-grey-white flex flex-wrap items-start justify-between gap-16 md:gap-24">
         <div>
-          <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · V 1.0</p>
-          <h1 className="text-32 sm:text-40 md:text-48 font-bold text-brick-grey-950 leading-tight mb-8 md:mb-12">input field</h1>
+          <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">Component · V 1.0</p>
+          <h1 className="text-32 font-bold text-brick-grey-950 mb-4">Input field</h1>
           <p className="text-16 text-brick-grey-600 leading-24">
             Single-line text input with six states — default, hover, filled, focus, error, and disabled. Supports a label, helper text, and left/right icon slots.
           </p>
         </div>
-        <a
-          href="https://brick-ds-storybook.vercel.app/?path=/docs/components-input--docs"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={buttonVariants({ variant: 'Secondary', size: 'Small' }) + ' shrink-0 mt-8'}
-        >
-          <span className="truncate">Storybook</span>
-          <ExternalLink className="size-[20px] shrink-0" />
-        </a>
       </div>
 
-      <ComponentTabs usage={usageContent} changelog={changelog} playground={<div className="flex flex-col-reverse md:flex-row flex-1 min-h-0">
+      <ComponentTabs storybookUrl="https://brick-ds-storybook.vercel.app/?path=/docs/components-input--docs" usage={usageContent} changelog={changelog} playground={<div className="flex flex-col-reverse md:flex-row flex-1 min-h-0">
         {/* Controls */}
         <div className="w-full md:w-[560px] md:shrink-0 border-t md:border-t-0 md:border-r border-brick-grey-300 bg-brick-grey-white p-24 flex flex-col overflow-y-auto">
           <div className="flex items-center justify-between mb-16">

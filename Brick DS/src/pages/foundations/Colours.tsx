@@ -96,11 +96,15 @@ const PALETTES: Palette[] = [
 
 export function Colours() {
   return (
-    <div className="p-16 sm:p-32 md:p-48">
-      <h1 className="text-40 font-bold text-brick-grey-950 leading-44 mb-8">Colours</h1>
-      <p className="text-16 text-brick-grey-600 leading-24 mb-48 max-w-[560px]">
+    <div className="flex flex-col">
+      <div className="bg-brick-grey-white border-b border-brick-grey-300 px-16 pt-24 pb-24 sm:px-32 md:px-48 md:pt-40 md:pb-32">
+        <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">Foundations</p>
+        <h1 className="text-32 font-bold text-brick-grey-950 mb-4">Colours</h1>
+        <p className="text-16 text-brick-grey-600 leading-24 max-w-[560px]">
           Six palettes, ten shades each. Lighter values are for backgrounds and borders; darker ones are for text and icons.
-      </p>
+        </p>
+      </div>
+      <div className="bg-brick-grey-100 px-16 py-24 sm:px-32 sm:py-32 md:px-48 md:py-40">
 
       <div className="flex flex-col gap-48">
         {PALETTES.map(({ label, swatches }) => (
@@ -117,6 +121,7 @@ export function Colours() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

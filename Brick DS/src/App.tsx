@@ -6,6 +6,8 @@ import { SetupPage } from '@/pages/SetupPage';
 import { FoundationsLayout, FoundationsIndex } from '@/pages/foundations/FoundationsLayout';
 import { ComponentsLayout } from '@/pages/components/ComponentsLayout';
 import { ComponentsIndexPage } from '@/pages/components/ComponentsIndex';
+import { IconsLayout, IconsIndex } from '@/pages/icons/IconsLayout';
+import { MaterialIconsPlayground } from '@/pages/icons/MaterialIconsPlayground';
 import { Colours } from '@/pages/foundations/Colours';
 import { Typography } from '@/pages/foundations/Typography';
 import { Spacing } from '@/pages/foundations/Spacing';
@@ -51,6 +53,10 @@ export default function App() {
             <Route path="tooltip"     element={<TooltipPage />} />
             <Route path="switch"      element={<SwitchPage />} />
             <Route path="tabs"        element={<TabsPage />} />
+          </Route>
+          <Route path="/icons" element={<IconsLayout />}>
+            <Route index element={<IconsIndex />} />
+            <Route path="material" element={<MaterialIconsPlayground />} />
           </Route>
         </Routes>
       </div>

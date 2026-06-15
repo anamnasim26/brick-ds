@@ -93,15 +93,15 @@ const CLOSE_CLASS: Record<TooltipColour, string> = {
 
 // Arrow alignment for bottom/top positions
 const BOTTOM_ALIGN: Record<'Bottom Left' | 'Bottom Center' | 'Bottom Right', string> = {
-  'Bottom Left':   'items-start',
-  'Bottom Center': 'items-center',
-  'Bottom Right':  'items-end',
+  'Bottom Left':   'justify-start',
+  'Bottom Center': 'justify-center',
+  'Bottom Right':  'justify-end',
 };
 
 const TOP_ALIGN: Record<'Top Left' | 'Top Center' | 'Top Right', string> = {
-  'Top Left':   'items-start',
-  'Top Center': 'items-center',
-  'Top Right':  'items-end',
+  'Top Left':   'justify-start',
+  'Top Center': 'justify-center',
+  'Top Right':  'justify-end',
 };
 
 // Drop-shadow applied on the wrapper div so it traces the combined silhouette

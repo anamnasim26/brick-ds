@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowLeft, ChevronDown, ChevronRight, Pen,
+  ArrowLeft, Pen,
 } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -112,52 +112,33 @@ function LeftNav({
   activeId: string;
   onNav: (id: string) => void;
 }) {
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
-    Object.fromEntries(sections.map(s => [s.title, true]))
-  );
-
-  // Re-open all groups when sections change (audience switch)
-  useEffect(() => {
-    setOpenGroups(Object.fromEntries(sections.map(s => [s.title, true])));
-  }, [sections]);
 
   return (
-    <aside className="hidden md:flex w-[280px] lg:w-[360px] shrink-0 h-full overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-12 pb-24 flex-col">
+    <aside className="hidden md:flex w-[260px] lg:w-[280px] shrink-0 h-full overflow-y-auto border-r border-brick-grey-300 bg-brick-grey-white pt-4 pb-24 flex-col">
       <Link
         to="/"
-        className="flex items-center gap-8 px-16 py-8 mb-4 text-13 text-brick-grey-600 hover:text-brick-grey-950 transition-colors group"
+        className="flex items-center gap-4 px-16 h-[40px] text-12 text-brick-grey-500 hover:text-brick-grey-800 transition-colors group"
       >
-        <ArrowLeft className="size-[14px] transition-transform group-hover:-translate-x-1" />
+        <ArrowLeft className="size-[12px] transition-transform group-hover:-translate-x-1" />
         Back
       </Link>
+      <div className="border-b border-brick-grey-300 mb-4" />
 
-      {sections.map(section => {
-        const isOpen = openGroups[section.title] ?? true;
+      {sections.map((section, si) => {
         return (
-          <div key={section.title} className="mb-4">
-            <button
-              onClick={() => setOpenGroups(p => ({ ...p, [section.title]: !isOpen }))}
-              className="w-full flex items-center gap-6 px-16 py-[5px] text-[10px] font-semibold text-brick-grey-500 uppercase tracking-[0.06em] hover:text-brick-grey-700 transition-colors"
-            >
-              {isOpen
-                ? <ChevronDown className="size-[11px] shrink-0" />
-                : <ChevronRight className="size-[11px] shrink-0" />}
-              {section.title}
-            </button>
-            {isOpen && (
-              <div className="flex flex-col mt-1">
-                {section.items.map(item => (
-                  <button key={item.id} onClick={() => onNav(item.id)}
-                    className={`w-full text-left py-[5px] px-16 text-[13px] leading-[1.4] transition-colors border-l-2 ${
-                      activeId === item.id
-                        ? 'border-active-blue-500 bg-active-blue-50 text-active-blue-700 font-semibold'
-                        : 'border-transparent text-brick-grey-700 hover:bg-brick-grey-200 hover:text-brick-grey-950 font-normal'
-                    }`}>
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            )}
+          <div key={section.title} className={si > 0 ? 'mt-4' : ''}>
+            <div className="flex flex-col">
+              {section.items.map(item => (
+                <button key={item.id} onClick={() => onNav(item.id)}
+                  className={`w-full text-left py-[6px] px-16 text-13 leading-[1.4] transition-colors border-l-2 ${
+                    activeId === item.id
+                      ? 'border-brick-blue-500 bg-brick-blue-50 text-brick-blue-600 font-semibold'
+                      : 'border-transparent text-brick-grey-700 hover:bg-brick-grey-100 hover:text-brick-grey-950 font-normal'
+                  }`}>
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         );
       })}
@@ -433,24 +414,28 @@ export function SetupPage() {
   const allItems = navSections.flatMap(s => s.items);
   const [activeId, setActiveId] = useState(allItems[0].id);
   const contentRef = useRef<HTMLDivElement>(null);
+  const isProgrammaticScroll = useRef(false);
 
   const scrollTo = useCallback((id: string) => {
     const target = document.getElementById(id);
     const container = contentRef.current;
     if (!target || !container) return;
+    setActiveId(id);
+    isProgrammaticScroll.current = true;
     const offset = target.getBoundingClientRect().top
       - container.getBoundingClientRect().top
       + container.scrollTop
       - 24;
     container.scrollTo({ top: offset, behavior: 'smooth' });
-    setActiveId(id);
+    setTimeout(() => { isProgrammaticScroll.current = false; }, 700);
   }, []);
 
-  // Track active section on scroll
+  // Track active section on manual scroll only
   useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
     const handler = () => {
+      if (isProgrammaticScroll.current) return;
       const ids = allItems.map(s => s.id);
       for (const id of [...ids].reverse()) {
         const t = document.getElementById(id);
@@ -517,8 +502,8 @@ export function SetupPage() {
         </div>
 
         {/* Scrollable content */}
-        <div ref={contentRef} className="flex-1 overflow-y-auto">
-          <div className="max-w-[680px] px-16 py-24 sm:px-32 sm:py-32 md:px-48 md:py-40">
+        <div ref={contentRef} className="flex-1 overflow-y-auto bg-brick-grey-100">
+          <div className="px-16 py-24 sm:px-32 sm:py-32 md:px-48 md:py-40">
             {audience === 'developers' ? <DeveloperContent /> : <DesignerContent />}
           </div>
         </div>

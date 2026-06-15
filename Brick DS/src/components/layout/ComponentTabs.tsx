@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { EmptyState } from '@/components/EmptyState';
 
 // ─── Tab bar ───────────────────────────────────────────────────────────────────
@@ -15,6 +16,7 @@ interface ComponentTabsProps {
   playground: React.ReactNode;
   usage: React.ReactNode;
   changelog?: ChangelogEntry[];
+  storybookUrl?: string;
 }
 
 const TAB_LABELS: Record<Tab, string> = {
@@ -23,7 +25,7 @@ const TAB_LABELS: Record<Tab, string> = {
   changelog: 'Changelog',
 };
 
-export function ComponentTabs({ playground, usage, changelog }: ComponentTabsProps) {
+export function ComponentTabs({ playground, usage, changelog, storybookUrl }: ComponentTabsProps) {
   const [tab, setTab] = useState<Tab>('playground');
 
   const tabs: Tab[] = ['playground', 'usage', 'changelog'];
@@ -48,6 +50,17 @@ export function ComponentTabs({ playground, usage, changelog }: ComponentTabsPro
             )}
           </button>
         ))}
+        {storybookUrl && (
+          <a
+            href={storybookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative py-12 mr-24 text-14 font-medium text-brick-grey-600 hover:text-brick-grey-950 transition-colors flex items-center gap-[3px]"
+          >
+            Storybook
+            <ExternalLink className="size-[13px]" />
+          </a>
+        )}
       </div>
 
       {tab === 'playground' && playground}

@@ -153,25 +153,24 @@ export function PreviewPanel({ code, children }: PreviewPanelProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-0">
+    <div className="flex-1 flex flex-col min-h-0 min-w-0">
       {/* Shared header bar */}
-      <div className="flex items-center justify-between px-12 py-[3px] border-b border-brick-grey-300 bg-brick-grey-white shrink-0">
-        {/* Left: copy button (code tab only) or spacer */}
-        {tab === 'code' ? (
-          <Button
-            variant="Secondary"
-            size="Small"
-            state={copied ? 'Default' : 'Default'}
-            label={copied ? 'Copied' : 'Copy'}
-            leftIcon={copied ? <Check className="size-[16px]" /> : <Copy className="size-[16px]" />}
-            showLeftIcon
-            showRightIcon={false}
-            withText
-            onClick={copy}
-          />
-        ) : (
-          <span className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em]">Preview</span>
-        )}
+      <div className="flex items-center justify-between px-12 py-[6px] border-b border-brick-grey-300 bg-brick-grey-white shrink-0">
+        {/* Left: copy button (code tab only) or spacer keeping height uniform */}
+        <div className="h-[30px] flex items-center">
+          {tab === 'code' && (
+            <button
+              onClick={copy}
+              aria-label={copied ? 'Copied' : 'Copy code'}
+              className="flex items-center gap-[5px] h-[30px] px-8 rounded-6 text-brick-grey-500 hover:text-brick-grey-950 hover:bg-brick-grey-100 transition-colors text-13 font-medium"
+            >
+              {copied
+                ? <Check className="size-[13px] text-green-600 shrink-0" />
+                : <Copy className="size-[13px] shrink-0" />}
+              <span className={copied ? 'text-green-600' : ''}>{copied ? 'Copied' : 'Copy'}</span>
+            </button>
+          )}
+        </div>
 
         {/* Right: Preview / Code toggle */}
         <div className="flex items-center bg-brick-grey-white border border-brick-grey-300 rounded-8 p-[3px] shadow-sm">

@@ -20,7 +20,7 @@ export function TabsPage() {
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="px-48 pt-40 pb-32 border-b border-brick-grey-300 bg-brick-grey-white">
-        <p className="text-12 font-semibold text-brick-blue-500 uppercase tracking-[0.1em] mb-8">Component · Coming soon</p>
+        <p className="text-12 font-semibold text-brick-grey-500 uppercase tracking-[0.08em] mb-8">Component · Coming soon</p>
         <h1 className="text-48 font-bold text-brick-grey-950 leading-48 mb-12">tabs</h1>
         <p className="text-16 text-brick-grey-600 leading-24">
           Organises related content into sections without leaving the page. Works best when each tab holds a distinct view — avoid using tabs just to reduce scroll.

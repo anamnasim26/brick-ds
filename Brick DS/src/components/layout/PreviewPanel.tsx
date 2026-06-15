@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { Check, Copy, Eye, Code } from 'lucide-react';
-import { Button } from '@/components/Button';
 
 // ─── Syntax highlighter ────────────────────────────────────────────────────────
 

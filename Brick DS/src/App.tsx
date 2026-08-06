@@ -15,6 +15,7 @@ import { Radius } from '@/pages/foundations/Radius';
 import { AlertPage } from '@/pages/components/AlertPage';
 import { AvatarPage } from '@/pages/components/AvatarPage';
 import { BadgePage } from '@/pages/components/BadgePage';
+import { BlankComponentPage } from '@/pages/components/BlankComponentPage';
 import { ButtonPage } from '@/pages/components/ButtonPage';
 import { CheckboxPage } from '@/pages/components/CheckboxPage';
 import { EmptyStatePage } from '@/pages/components/EmptyStatePage';
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="alert" element={<AlertPage />} />
             <Route path="avatar" element={<AvatarPage />} />
             <Route path="badge" element={<BadgePage />} />
+            <Route path="blank" element={<BlankComponentPage />} />
             <Route path="button"   element={<ButtonPage />} />
             <Route path="checkbox"    element={<CheckboxPage />} />
             <Route path="empty-state" element={<EmptyStatePage />} />
